@@ -1,0 +1,1 @@
+<x-table id="users" :model="$model" :records="$records ?? []" route="{{route('users.index')}}"/>
