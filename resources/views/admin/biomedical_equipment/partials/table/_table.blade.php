@@ -1,0 +1,1 @@
+<x-table id="biomedical_equipments" :model="$model" :records="$records ?? []" route="{{route('biomedicalEquipments.index')}}"/>

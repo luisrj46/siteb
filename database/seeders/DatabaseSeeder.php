@@ -2,25 +2,19 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\CountryCity\CitySeeder;
-use Database\Seeders\CountryCity\CountrySeeder;
-use Database\Seeders\CountryCity\StateSeeder;
-use Database\Seeders\GracePeriod\GracePeriodSeeder;
-use Database\Seeders\Phone\PhoneTypeSeeder;
+use Database\Seeders\BiomedicalEquipment\BiomedicalClassificationSeeder;
+use Database\Seeders\BiomedicalEquipment\BiomedicalEquipmentSeeder;
+use Database\Seeders\BiomedicalEquipment\FormAcquisitionSeeder;
+use Database\Seeders\BiomedicalEquipment\PeriodSeeder;
+use Database\Seeders\BiomedicalEquipment\PlanSeeder;
+use Database\Seeders\BiomedicalEquipment\PropertySeeder;
+use Database\Seeders\BiomedicalEquipment\RiskClassSeeder;
+use Database\Seeders\BiomedicalEquipment\UseBiomedicalSeeder;
+use Database\Seeders\BiomedicalEquipment\YesOrNotSeeder;
 use Database\Seeders\Roles\PermissionsSeeder;
 use Database\Seeders\Roles\RoleHasPermissionSeeder;
 use Database\Seeders\Roles\RolesSeeder;
-use Database\Seeders\Setting\GeneralSettingSeeder;
-use Database\Seeders\User\TypeDocumentSeeder;
-use Database\Seeders\User\TypeUserSeeder;
 use Database\Seeders\User\UserSeeder;
-use Database\Seeders\Property\PropertySeeder;
-use Database\Seeders\Amenity\AmenitySeeder;
-use Database\Seeders\Bank\AccountTypeSeeder;
-use Database\Seeders\Promotion\PromotionSeeder;
-use Database\Seeders\Property\CategoryPropertySeeder;
-use Database\Seeders\Property\RoomTypeSeeder;
-use Database\Seeders\Property\TypeRestrictionSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use Illuminate\Database\Seeder;
@@ -38,6 +32,16 @@ class DatabaseSeeder extends Seeder
             PermissionsSeeder::class,
             RolesSeeder::class,
             RoleHasPermissionSeeder::class,
+            BiomedicalClassificationSeeder::class,
+            FormAcquisitionSeeder::class,
+            PeriodSeeder::class,
+            PlanSeeder::class,
+            PropertySeeder::class,
+            RiskClassSeeder::class,
+            UseBiomedicalSeeder::class,
+            YesOrNotSeeder::class,
+            BiomedicalEquipmentSeeder::class,
+
         ]);
     }
 }

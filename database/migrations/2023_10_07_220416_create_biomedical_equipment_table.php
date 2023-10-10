@@ -1,0 +1,72 @@
+<?php
+
+use App\Models\BiomedicalEquipment\BiomedicalClassification;
+use App\Models\BiomedicalEquipment\FormAcquisition;
+use App\Models\BiomedicalEquipment\Period;
+use App\Models\BiomedicalEquipment\Plan;
+use App\Models\BiomedicalEquipment\Property;
+use App\Models\BiomedicalEquipment\RiskClass;
+use App\Models\BiomedicalEquipment\UseBiomedical;
+use App\Models\BiomedicalEquipment\Voltage;
+use App\Models\BiomedicalEquipment\YesOrNot;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('biomedical_equipment', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('brand')->nullable();
+            $table->string('model')->nullable();
+            $table->string('series')->nullable();
+            $table->string('active_code')->nullable();
+            $table->string('service')->nullable();
+            $table->string('ambient')->nullable();
+            $table->string('invima_register')->nullable();
+            $table->unsignedDecimal('cost', 12, 2)->nullable();
+            $table->foreignIdFor(Property::class)->nullable();
+            $table->foreignIdFor(FormAcquisition::class)->nullable();
+            $table->date('date_purchase')->nullable();
+            $table->string('reception_condition')->nullable();
+            $table->unsignedSmallInteger('year_production')->nullable();
+            $table->string('maker')->nullable();
+            $table->bigInteger('manufacturer_phone')->nullable();
+            $table->string('representative')->nullable();
+            $table->bigInteger('representative_phone')->nullable();
+            $table->foreignIdFor(Period::class, 'periodicity_preventive')->nullable();
+            $table->foreignIdFor(YesOrNot::class, 'requires_calibration')->nullable();
+            $table->foreignIdFor(Period::class, 'calibration_periodicity')->nullable();
+            $table->foreignIdFor(YesOrNot::class, 'operation_manual')->nullable();
+            $table->foreignIdFor(YesOrNot::class, 'maintenance_manual')->nullable();
+            $table->foreignIdFor(Plan::class)->nullable();
+            $table->foreignIdFor(UseBiomedical::class)->nullable();
+            $table->foreignIdFor(BiomedicalClassification::class)->nullable();
+            $table->foreignIdFor(RiskClass::class)->nullable();
+            $table->string('power_supply')->nullable();
+            $table->string('frequency')->nullable();
+            $table->string('weight')->nullable();
+            $table->string('temperature')->nullable();
+            $table->string('voltage')->nullable();
+            $table->string('description')->nullable();
+            $table->string('photo')->nullable();
+            $table->foreignIdFor(YesOrNot::class, 'damaged')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('biomedical_equipment');
+    }
+};

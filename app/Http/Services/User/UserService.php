@@ -2,13 +2,15 @@
 
 namespace App\Http\Services\User;
 
+use App\Http\Services\Contracts\ServiceInterface;
 use App\Http\Services\User\Src\SaveUser;
 use App\Models\User\User;
 use App\Traits\Services\ServiceTrait;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 
-class UserService
+class UserService implements ServiceInterface
 {
     use ServiceTrait;
 
@@ -16,7 +18,7 @@ class UserService
     {
     }
 
-    public function index(Request $request)
+    public function index(Request $request): object
     {
         $request = $this->pagination($request);
 
@@ -28,7 +30,7 @@ class UserService
         return $users;
     }
 
-    public function form(Request $request, $user = new User())
+    public function form(Request $request, $user = new User()): array
     {
         if ($request->action != 'create' && is_null($user->id)) abort(404, 'Error al enviar al modelo');
         return [
@@ -38,23 +40,23 @@ class UserService
         ];
     }
 
-    public function store(Request $request)
+    public function store(Request $request): void
     {
         $user = new User();
         $this->saveUser->save($request, $user);
     }
 
-    public function show(User $user)
+    public function show(Model $user): Model
     {
         return $user;
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, Model $user): void
     {
         $this->saveUser->save($request, $user);
     }
 
-    public function destroy(User $user)
+    public function destroy(Model $user): void
     {
         $user->delete();
     }

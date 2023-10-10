@@ -1,21 +1,17 @@
 <?php
 
-namespace Database\Seeders\User;
+namespace Database\Seeders;
 
-use App\Models\User\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class MaintenanceItemSeeder extends Seeder
 {
-    use WithoutModelEvents;
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        User::factory(20)
-        ->create();
-
+        //
     }
 }

@@ -17,7 +17,7 @@
                 </a>
             </div>
             <div class="menu-item">
-                <a class="menu-link" href="#">
+                <a class="menu-link" href="{{route('biomedicalEquipments.index')}}">
                     <span class="menu-icon">{!! getIcon('bill', 'fs-1') !!}</span>
                     <span class="menu-title">Equipos biomedicos</span>
                 </a>

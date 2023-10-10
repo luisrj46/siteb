@@ -1,4 +1,4 @@
-@props(['id', 'value' => [], 'body', 'labelAdd' => 'Agregar', 'labelDelete' => 'Eliminar', 'readonly' => false, 'disabled' => false])
+@props(['id', 'value' => [], 'body', 'labelAdd' => 'Agregar', 'labelDelete' => '', 'readonly' => false, 'disabled' => false])
 @php
     use Illuminate\Support\Collection;
 @endphp
