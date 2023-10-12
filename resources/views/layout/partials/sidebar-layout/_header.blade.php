@@ -1,5 +1,5 @@
 <!--begin::Header-->
-<div id="kt_app_header" style="background-color: #596CFF" class="app-header" data-kt-sticky="true" data-kt-sticky-activate="{default: true, lg: true}" data-kt-sticky-name="app-header-minimize" data-kt-sticky-offset="{default: '200px', lg: '0'}" data-kt-sticky-animation="false">
+<div id="kt_app_header" style="background-color: #000" class="app-header" data-kt-sticky="true" data-kt-sticky-activate="{default: true, lg: true}" data-kt-sticky-name="app-header-minimize" data-kt-sticky-offset="{default: '200px', lg: '0'}" data-kt-sticky-animation="false">
 	<!--begin::Header container-->
 	<div class="app-container container-fluid d-flex align-items-stretch justify-content-between" id="kt_app_header_container">
 		<!--begin::Sidebar mobile toggle-->
@@ -10,7 +10,7 @@
 		<!--begin::Mobile logo-->
 		<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
 			<a href="/" class="d-lg-none">
-				<img alt="Logo" src="{{ image('logos/logo_selah_icon.png') }}" class="h-30px" />
+				<img alt="Logo" src="{{ image('logos/siteb_small_2.png') }}" class="h-30px" />
 			</a>
 		</div>
 		<!--end::Mobile logo-->

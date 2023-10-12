@@ -37,7 +37,7 @@ return [
     # Theme Assets
 
     'KT_THEME_ASSETS' => [
-        'favicon' => 'assets/media/logos/logo_selah_ico-fondo-negro.ico',
+        'favicon' => 'assets/media/logos/siteb_small_2.ico',
         'fonts' => [
             'https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700',
         ],
