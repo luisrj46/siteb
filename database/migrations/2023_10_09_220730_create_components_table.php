@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('components', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(BiomedicalEquipment::class);
+            $table->foreignIdFor(BiomedicalEquipment::class)->constrained('biomedical_equipment');
             $table->string('name');
             $table->string('brand')->nullable();
             $table->string('model')->nullable();

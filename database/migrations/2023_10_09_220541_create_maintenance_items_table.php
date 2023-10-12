@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('maintenance_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(BiomedicalEquipment::class);
+            $table->foreignIdFor(BiomedicalEquipment::class)->constrained('biomedical_equipment');
             $table->string('description');
             $table->timestamps();
             $table->softDeletes();
