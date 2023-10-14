@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Services\User\UserService;
-use App\Models\User\TypeUser;
 use App\Models\User\User;
 use Illuminate\Http\Request;
 
@@ -36,7 +35,7 @@ class UserController extends Controller
     public function create(Request $request)
     {
         $this->authorize('store');
-        return $this->userService->form($request);
+        return $this->userService->form($request, new User());
     }
 
     /**

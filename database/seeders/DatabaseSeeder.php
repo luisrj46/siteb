@@ -9,6 +9,7 @@ use Database\Seeders\BiomedicalEquipment\PeriodSeeder;
 use Database\Seeders\BiomedicalEquipment\PlanSeeder;
 use Database\Seeders\BiomedicalEquipment\PropertySeeder;
 use Database\Seeders\BiomedicalEquipment\RiskClassSeeder;
+use Database\Seeders\BiomedicalEquipment\ServiceSeeder;
 use Database\Seeders\BiomedicalEquipment\UseBiomedicalSeeder;
 use Database\Seeders\BiomedicalEquipment\YesOrNotSeeder;
 use Database\Seeders\Roles\PermissionsSeeder;
@@ -40,6 +41,7 @@ class DatabaseSeeder extends Seeder
             RiskClassSeeder::class,
             UseBiomedicalSeeder::class,
             YesOrNotSeeder::class,
+            ServiceSeeder::class,
             BiomedicalEquipmentSeeder::class,
 
         ]);

@@ -6,6 +6,7 @@ use App\Models\BiomedicalEquipment\Period;
 use App\Models\BiomedicalEquipment\Plan;
 use App\Models\BiomedicalEquipment\Property;
 use App\Models\BiomedicalEquipment\RiskClass;
+use App\Models\BiomedicalEquipment\Service;
 use App\Models\BiomedicalEquipment\UseBiomedical;
 use App\Models\BiomedicalEquipment\Voltage;
 use App\Models\BiomedicalEquipment\YesOrNot;
@@ -20,14 +21,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('biomedical_equipment', function (Blueprint $table) {
+        Schema::create('biomedical_equipments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('brand')->nullable();
             $table->string('model')->nullable();
             $table->string('series')->nullable();
             $table->string('active_code')->nullable();
-            $table->string('service')->nullable();
+            $table->foreignIdFor(Service::class)->constrained()->nullable();
             $table->string('ambient')->nullable();
             $table->string('invima_register')->nullable();
             $table->unsignedDecimal('cost', 12, 2)->nullable();

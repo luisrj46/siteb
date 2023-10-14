@@ -30,7 +30,7 @@ class UserService implements ServiceInterface
         return $users;
     }
 
-    public function form(Request $request, $user = new User()): array
+    public function form(Request $request, Model $user): array
     {
         if ($request->action != 'create' && is_null($user->id)) abort(404, 'Error al enviar al modelo');
         return [

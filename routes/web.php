@@ -3,22 +3,11 @@
 use App\Http\Controllers\BiomedicalEquipment\BiomedicalEquipmentController;
 use App\Http\Controllers\BiomedicalEquipment\GetBiomedicalEquipmentController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\GracePeriod\GracePeriodController;
 use App\Http\Controllers\User\GetUserController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::middleware(['auth', 'verified'])->group(function () {
 

@@ -15,6 +15,8 @@ class BiomedicalEquipment extends Model
 {
     use HasFactory, ModelTrait;
 
+    protected $table = 'biomedical_equipments';
+
     protected $guarded = ['id'];
 
     const tableHeaders = ['#', 'Nombre', 'Marca', 'Modelo', 'Serie', 'Acciones'];

@@ -2,7 +2,6 @@
 
 namespace App\Http\Services\User\Request;
 
-use App\Models\User\TypeUser;
 use App\Traits\Request\UploadFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\BiomedicalEquipment\BiomedicalEquipment;
+use App\Models\Maintenance\MaintenanceExecution;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,13 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('components', function (Blueprint $table) {
+        Schema::create('spares', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(BiomedicalEquipment::class)->constrained();
+            $table->foreignIdFor(MaintenanceExecution::class)->constrained();
             $table->string('name');
-            $table->string('brand')->nullable();
-            $table->string('model')->nullable();
-            $table->string('serie')->nullable();
+            $table->unsignedInteger('quantity');
+            $table->unsignedDouble('cost')->nullable();
+            $table->string('series')->nullable();
+            $table->string('observation')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('components');
+        Schema::dropIfExists('spares');
     }
 };

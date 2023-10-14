@@ -8,6 +8,7 @@ use App\Models\BiomedicalEquipment\Period;
 use App\Models\BiomedicalEquipment\Plan;
 use App\Models\BiomedicalEquipment\Property;
 use App\Models\BiomedicalEquipment\RiskClass;
+use App\Models\BiomedicalEquipment\Service;
 use App\Models\BiomedicalEquipment\UseBiomedical;
 use App\Models\BiomedicalEquipment\Voltage;
 use App\Models\BiomedicalEquipment\YesOrNot;
@@ -31,7 +32,7 @@ class BiomedicalEquipmentFactory extends Factory
             'model' => fake()->rgbColor,
             'series' => fake()->streetName,
             'active_code' => fake()->numerify(),
-            'service' => fake()->company,
+            'service_id' => Service::get()->random(),
             'ambient' => fake()->word,
             'invima_register' => fake()->numberBetween(1000,50000),
             'cost' => fake()->numberBetween(10000000,50000000),

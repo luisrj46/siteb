@@ -2,7 +2,6 @@
 
 namespace App\Policies\User;
 
-use App\Models\User\TypeUser;
 use App\Models\User\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
@@ -14,7 +13,7 @@ class UserPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function index(User $user, int $typeUser): Response
+    public function index(User $user): Response
     {
         if ($user->can('user.index')) return Response::allow();
 
@@ -34,7 +33,7 @@ class UserPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function store(User $user, int $typeUser): Response
+    public function store(User $user): Response
     {
         if ($user->can('user.store')) return Response::allow();
 
