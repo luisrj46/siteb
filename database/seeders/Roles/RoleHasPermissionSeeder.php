@@ -19,11 +19,55 @@ class RoleHasPermissionSeeder extends Seeder
         app('cache')
             ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)
             ->forget(config('permission.cache.key'));
-            
-        $adminRole = Role::whereName(RolesSeeder::COORDINATOR)->first();
-        $adminPermission = Permission::get()->pluck('id');
-        
-        $adminRole->permissions()->sync($adminPermission);
+
+        $coordinatorRole = Role::whereName(RolesSeeder::COORDINATOR)->first();
+        $coordinatorPermission = Permission::whereIn('name', [
+                'user.index',
+                'user.show',
+                'user.store',
+                'user.update',
+                'user.destroy',
+                'biomedical.equipment.index',
+                'biomedical.equipment.show',
+                'biomedical.equipment.store',
+                'biomedical.equipment.update',
+                'biomedical.equipment.destroy',
+                'biomedical.equipment.disable',
+                'maintenance.index',
+                'maintenance.show',
+                'maintenance.store',
+                'maintenance.update',
+                'maintenance.destroy',
+            ])->get()->pluck('id');
+
+        $coordinatorRole->permissions()->sync($coordinatorPermission);
+
+        $secretaryRole = Role::whereName(RolesSeeder::SECRETARY)->first();
+        $secretaryPermission = Permission::whereIn('name', [
+                'user.index',
+                'user.show',
+                'biomedical.equipment.index',
+                'biomedical.equipment.show',
+                'biomedical.equipment.store',
+                'biomedical.equipment.update',
+                'maintenance.index',
+                'maintenance.show',
+                'maintenance.store',
+                'maintenance.update',
+            ])->get()->pluck('id');
+
+        $secretaryRole->permissions()->sync($secretaryPermission);
+
+        $supportRole = Role::whereName(RolesSeeder::SUPPORT)->first();
+        $supportPermission = Permission::whereIn('name', [
+                'biomedical.equipment.index',
+                'biomedical.equipment.show',
+                'maintenance.index',
+                'maintenance.show',
+                'maintenance.execution',
+            ])->get()->pluck('id');
+
+        $supportRole->permissions()->sync($supportPermission);
 
 
 

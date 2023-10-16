@@ -24,7 +24,7 @@ class RolesSeeder extends Seeder
         Role::upsert(
             [
                 ['id' => 1, 'name' => self::ROOT, 'title' => 'Super administrador'],
-                ['id' => 2, 'name' => self::COORDINATOR, 'title' => 'Coodinador'],
+                ['id' => 2, 'name' => self::COORDINATOR, 'title' => 'Coordinador'],
                 ['id' => 3, 'name' => self::SUPPORT, 'title' => 'Ingeniero de soporte'],
                 ['id' => 4, 'name' => self::SECRETARY, 'title' => 'Secretario'],
             ],

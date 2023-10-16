@@ -4,17 +4,11 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 
-use App\Models\Banner\Banner;
-use App\Policies\Banner\BannerPolicy;
-use App\Models\Property\Recommended;
-use App\Models\Setting\GeneralSetting;
+use App\Models\BiomedicalEquipment\BiomedicalEquipment;
+use App\Models\Maintenance\Maintenance;
 use App\Models\User\User;
-use App\Policies\Recommended\RecommendedPolicy;
-use App\Models\Promotion\Promotion;
-use App\Models\Property\Property;
-use App\Policies\Promotion\PromotionPolicy;
-use App\Policies\Property\PropertyPolicy;
-use App\Policies\Setting\GeneralSettingPolicy;
+use App\Policies\BiomedicalEquipment\BiomedicalEquipmentPolicy;
+use App\Policies\Maintenance\MaintenancePolicy;
 use App\Policies\User\UserPolicy;
 use Database\Seeders\Roles\RolesSeeder;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -29,11 +23,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         User::class => UserPolicy::class,
-        Banner::class => BannerPolicy::class,
-        GeneralSetting::class => GeneralSettingPolicy::class,
-        Recommended::class => RecommendedPolicy::class,
-        Promotion::class => PromotionPolicy::class,
-        Property::class => PropertyPolicy::class
+        BiomedicalEquipment::class => BiomedicalEquipmentPolicy::class,
+        Maintenance::class => MaintenancePolicy::class
     ];
 
     /**

@@ -12,6 +12,8 @@ use Database\Seeders\BiomedicalEquipment\RiskClassSeeder;
 use Database\Seeders\BiomedicalEquipment\ServiceSeeder;
 use Database\Seeders\BiomedicalEquipment\UseBiomedicalSeeder;
 use Database\Seeders\BiomedicalEquipment\YesOrNotSeeder;
+use Database\Seeders\Maintenance\MaintenanceSeeder;
+use Database\Seeders\Maintenance\MaintenanceTypeSeeder;
 use Database\Seeders\Roles\PermissionsSeeder;
 use Database\Seeders\Roles\RoleHasPermissionSeeder;
 use Database\Seeders\Roles\RolesSeeder;
@@ -29,9 +31,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            UserSeeder::class,
             PermissionsSeeder::class,
             RolesSeeder::class,
+            UserSeeder::class,
             RoleHasPermissionSeeder::class,
             BiomedicalClassificationSeeder::class,
             FormAcquisitionSeeder::class,
@@ -43,7 +45,8 @@ class DatabaseSeeder extends Seeder
             YesOrNotSeeder::class,
             ServiceSeeder::class,
             BiomedicalEquipmentSeeder::class,
-
+            MaintenanceTypeSeeder::class,
+            MaintenanceSeeder::class
         ]);
     }
 }

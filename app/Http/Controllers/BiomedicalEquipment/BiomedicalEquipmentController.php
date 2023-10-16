@@ -19,7 +19,7 @@ class BiomedicalEquipmentController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('index');
+        $this->authorize('viewAny', BiomedicalEquipment::class);
         $biomedicalEquipments = $this->biomedicalEquipmentService->index($request);
         if ($request->ajax()) {
             return response()->json([
@@ -33,7 +33,7 @@ class BiomedicalEquipmentController extends Controller
 
     public function create(Request $request)
     {
-        $this->authorize('store');
+        $this->authorize('store', BiomedicalEquipment::class);
         return $this->biomedicalEquipmentService->form($request);
     }
 
@@ -42,7 +42,7 @@ class BiomedicalEquipmentController extends Controller
      */
     public function store(StoreBiomedicalEquipmentRequest $request)
     {
-        $this->authorize('store');
+        $this->authorize('store', BiomedicalEquipment::class);
         $this->biomedicalEquipmentService->store($request);
         return response()->json(["message" => 'Equipo biomédico registrado correctamente']);
     }

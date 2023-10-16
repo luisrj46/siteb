@@ -11,31 +11,48 @@
             <!--end:Menu item-->
             <!--begin:Menu item-->
             <div class="menu-item">
-                <a class="menu-link" href="#">
+                <a class="menu-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                 href="{{ route('dashboard') }}">
                     <span class="menu-icon">{!! getIcon('home-3', 'fs-1') !!}</span>
                     <span class="menu-title">Inicio</span>
                 </a>
             </div>
-            <div class="menu-item">
-                <a class="menu-link" href="{{route('biomedicalEquipments.index')}}">
-                    <span class="menu-icon">{!! getIcon('bill', 'fs-1') !!}</span>
-                    <span class="menu-title">Equipos biomedicos</span>
-                </a>
-            </div>
-            <div class="menu-item">
-                <a class="menu-link {{ request()->routeIs('customers.index') ? 'active' : '' }}"
-                    href="#">
-                    <span class="menu-icon">{!! getIcon('wallet', 'fs-1') !!}</span>
-                    <span class="menu-title">Mantenimientos</span>
-                </a>
-            </div>
-            <div class="menu-item">
-                <a class="menu-link" href="{{ route('users.index') }}">
-                    <span class="menu-icon">{!! getIcon('profile-user', 'fs-1') !!}</span>
-                    <span class="menu-title">Usuarios</span>
-                </a>
-            </div>
-           
+            @can('viewAny', \App\Models\BiomedicalEquipment\BiomedicalEquipment::class)
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->routeIs('biomedicalEquipments.index') ? 'active' : '' }}" 
+                    href="{{ route('biomedicalEquipments.index') }}">
+                        <span class="menu-icon">{!! getIcon('bill', 'fs-1') !!}</span>
+                        <span class="menu-title">Equipos biomedicos</span>
+                    </a>
+                </div>
+            @endcan
+            @can('viewAny', \App\Models\Maintenance\Maintenance::class)
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->routeIs('maintenances.index') ? 'active' : '' }}"
+                        href="{{ route('maintenances.index') }}">
+                        <span class="menu-icon">{!! getIcon('wallet', 'fs-1') !!}</span>
+                        <span class="menu-title">Mantenimientos</span>
+                    </a>
+                </div>
+            @endcan
+            @can('viewAny', \App\Models\User\User::class)
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->routeIs('users.index') ? 'active' : '' }}"
+                        href="{{ route('users.index') }}">
+                        <span class="menu-icon">{!! getIcon('profile-user', 'fs-1') !!}</span>
+                        <span class="menu-title">Usuarios</span>
+                    </a>
+                </div>
+            @endcan
+            {{-- @can('viewAny', \App\Models\User\User::class) --}}
+                <div class="menu-item">
+                    <a class="menu-link {{-- {{ request()->routeIs('users.index') ? 'active' : '' }} --}}"
+                        href="{{ route('users.index') }}">
+                        <span class="menu-icon">{!! getIcon('profile-user', 'fs-1') !!}</span>
+                        <span class="menu-title">Agenda</span>
+                    </a>
+                </div>
+            {{-- @endcan --}}
         </div>
         <!--end::Menu-->
     </div>

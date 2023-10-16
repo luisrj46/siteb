@@ -1,4 +1,4 @@
-@props(['name' => null, 'type' => 'text', 'class' => '', 'value' => null, 'id' => null, 'label' => null, 'required' => false, 'placeholder' => null, 'withLabel' => true, 'offcomplete' => null, 'readonly' => false, 'disabled' => false, 'variant' => 'input', 'options' => [], 'checked' => false, 'labelDelete' => null, 'labelAdd' => null, 'body' => null, 'url' => null, 'idChild' => null, 'searchable' => true, 'idParent' => null, 'labelFooter' => null, 'multiple' => false, 'single' => false, 'nameEnd' => false, 'minDate' => false, 'maxDate' => false, 'startDateValue' => false, 'endDateValue' => false, 'opens' => false, 'contentCallback' => null, 'limit' => false,'keysValues' => null,'empty' => false])
+@props(['name' => null, 'type' => 'text', 'class' => '', 'value' => null, 'id' => null, 'label' => null, 'required' => false, 'placeholder' => null, 'withLabel' => true, 'offcomplete' => null, 'readonly' => false, 'disabled' => false, 'variant' => 'input', 'options' => [], 'checked' => false, 'labelDelete' => null, 'labelAdd' => null, 'body' => null, 'url' => null, 'idChild' => null, 'searchable' => true, 'idParent' => null, 'labelFooter' => null, 'multiple' => false, 'single' => false, 'nameEnd' => false, 'minDate' => false, 'maxDate' => false, 'startDateValue' => false, 'endDateValue' => false, 'opens' => false, 'contentCallback' => null, 'limit' => false,'keysValues' => null,'empty' => false, 'timePicker' => false])
 @php
     $class =
         [
@@ -42,7 +42,7 @@
 
     @if ($variant == 'date-range')
         <x-forms.date-range.index :$startDateValue :$endDateValue :$minDate :$maxDate :nameStart="$name" :$nameEnd :$id
-        :$contentCallback :$single :$readonly :$disabled :$class :$placeholder :$opens />
+        :$contentCallback :$single :$readonly :$disabled :$class :$placeholder :$opens :$timePicker />
     @endif
 
     @if ($variant == 'ckeditor')

@@ -26,7 +26,7 @@ class UserService implements ServiceInterface
             ->order($request)
             ->paginate($request->length ?? 10);
 
-        $users->append(['is_enable_access', 'actions_access']);
+        $users->append(['is_enable_access','role_access', 'actions_access']);
         return $users;
     }
 

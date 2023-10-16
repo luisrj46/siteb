@@ -75,6 +75,10 @@
 
         <x-forms.input-group.index label="Voltaje" :value="$record->voltage" name="voltage" :disabled="$disabled" />
         
+        @can('biomedical.equipment.disable', $record)
+            <x-forms.input-group.index variant="checkbox" label="Habilitado" value="{{ $record->is_enabled }}" checked="{{ $request->action == 'create' ? 1 : 0 }}" name="is_enabled" :disabled="$disabled" />
+        @endcan
+        
         <x-forms.input-group.index :value="$record->maintenanceItems" name="items" id="items"  body='admin.biomedical_equipment.partials.modal.sub._items' variant="repeater" label="Items de mantenimiento preventivo" required="1" :disabled="$disabled" />
 
         <x-forms.input-group.index :value="$record->components" name="components" id="components"  body='admin.biomedical_equipment.partials.modal.sub._components' variant="repeater" label="Componentes" required="1" :disabled="$disabled" />

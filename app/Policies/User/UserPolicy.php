@@ -13,7 +13,7 @@ class UserPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function index(User $user): Response
+    public function viewAny(User $user): Response
     {
         if ($user->can('user.index')) return Response::allow();
 
@@ -25,7 +25,7 @@ class UserPolicy
      */
     public function view(User $user, User $model): Response
     {
-        if ($user->can('user.show')) return Response::allow();
+        if ($user->can('user.show') || $this->store($user) || $this->update($user,$model) ) return Response::allow();
 
         return Response::deny();
     }
@@ -60,19 +60,4 @@ class UserPolicy
         return Response::deny();
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, User $model): Response
-    {
-        return Response::deny();
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, User $model): Response
-    {
-        return Response::deny();
-    }
 }

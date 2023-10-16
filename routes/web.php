@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\BiomedicalEquipment\BiomedicalEquipmentController;
 use App\Http\Controllers\BiomedicalEquipment\GetBiomedicalEquipmentController;
+use App\Http\Controllers\Maintenance\GetMaintenanceController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Maintenance\MaintenanceController;
 use App\Http\Controllers\User\GetUserController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\UserController;
@@ -27,6 +29,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::resource('biomedicalEquipments', BiomedicalEquipmentController::class)->except('update');
             Route::post('biomedicalEquipments/{biomedicalEquipment}/update', [BiomedicalEquipmentController::class, 'update'])->name('biomedicalEquipments.update');
         });
+
+        Route::controller(MaintenanceController::class)->group(function(){
+            Route::resource('maintenances', MaintenanceController::class)->except('update');
+            Route::post('maintenances/{maintenance}/update', [MaintenanceController::class, 'update'])->name('maintenances.update');
+        });
         
         Route::get('profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
         Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -47,6 +54,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('use/biomedical', [GetBiomedicalEquipmentController::class, 'useBiomedical'])->name('use.biomedical');
         Route::get('biomedical/classification', [GetBiomedicalEquipmentController::class, 'biomedicalClassification'])->name('biomedical.classification');
         Route::get('risk/class', [GetBiomedicalEquipmentController::class, 'riskClass'])->name('risk.class');
+        
+        Route::get('type/maintenance', [GetMaintenanceController::class, 'typeMaintenance'])->name('type.maintenance');
+        Route::get('biomedical/equipment', [GetMaintenanceController::class, 'biomedicalEquipment'])->name('biomedical.equipment');
+        Route::get('responsible', [GetMaintenanceController::class, 'responsible'])->name('responsible');
+        Route::get('user', [GetMaintenanceController::class, 'user'])->name('user');
 
 
     });

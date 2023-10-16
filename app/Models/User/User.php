@@ -48,8 +48,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    const tableHeaders = ['#', 'Nombre', 'Documento', 'Email', 'Teléfono', 'Activo', 'Acciones'];
-    const tableFields = ['id', 'name', 'document', 'email', 'phone', 'is_enable_access', 'actions_access'];
+    const tableHeaders = ['#', 'Nombre', 'Documento', 'Email', 'Teléfono', 'Rol', 'Activo', 'Acciones'];
+    const tableFields = ['id', 'name', 'document', 'email', 'phone', 'role_access', 'is_enable_access', 'actions_access'];
     const searchable = ['id', 'name', 'document', 'email'];
 
     // Accessor
@@ -79,6 +79,13 @@ class User extends Authenticatable
         );
     }
 
+    protected function roleAccess(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->roles->pluck('title')->join(',')
+        );
+    }
+
     protected function actionsAccess(): Attribute
     {
         return Attribute::make(
@@ -88,19 +95,6 @@ class User extends Authenticatable
         );
     }
 
-    protected function isAdmin(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->hasRole([RolesSeeder::COORDINATOR, RolesSeeder::ROOT])
-        );
-    }
-
-    protected function isRoot(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->hasRole(RolesSeeder::ROOT)
-        );
-    }
 
     public static function getRoles()
     {

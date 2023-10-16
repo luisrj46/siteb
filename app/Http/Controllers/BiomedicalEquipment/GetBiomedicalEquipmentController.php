@@ -10,7 +10,6 @@ use App\Models\BiomedicalEquipment\Plan;
 use App\Models\BiomedicalEquipment\Property;
 use App\Models\BiomedicalEquipment\RiskClass;
 use App\Models\BiomedicalEquipment\UseBiomedical;
-use App\Models\BiomedicalEquipment\Voltage;
 use App\Models\BiomedicalEquipment\YesOrNot;
 use Illuminate\Http\Request;
 

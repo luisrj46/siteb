@@ -16,18 +16,16 @@ class MaintenanceTypeSeeder extends Seeder
         MaintenanceType::upsert(
             [
                 [
-                    [
-                        'name' => 'Preventivo',
-                        'slug' => MaintenanceType::PREVENTIVE,
-                    ],
-                    [
-                        'name' => 'Correctivo',
-                        'slug' => MaintenanceType::CORRECTIVE,
-                    ],
+                    'name' => 'Preventivo',
+                    'slug' => MaintenanceType::PREVENTIVE,
                 ],
-                ['slug'],
-                ['name']
-            ]
+                [
+                    'name' => 'Correctivo',
+                    'slug' => MaintenanceType::CORRECTIVE,
+                ],
+            ],
+            ['slug'],
+            ['name']
         );
     }
 }

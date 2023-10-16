@@ -112,6 +112,13 @@ class BiomedicalEquipment extends Model
         );
     }
 
+    protected function isEnableAccess(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->is_enabled == 1 ? '<span class="ms-2 badge badge-light-success fw-bold">Si</span>' : '<span class="ms-2 badge badge-light-danger fw-bold">No</span>',
+        );
+    }
+
     // form 
     public static function form($record, $request)
     {

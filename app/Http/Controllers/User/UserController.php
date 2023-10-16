@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('index');
+        $this->authorize('viewAny', User::class);
         $users = $this->userService->index($request);
         if ($request->ajax()) {
             return response()->json([
@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function create(Request $request)
     {
-        $this->authorize('store');
+        $this->authorize('store', User::class);
         return $this->userService->form($request, new User());
     }
 
@@ -43,7 +43,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $this->authorize('store');
+        $this->authorize('store', User::class);
         $this->userService->store($request);
         return response()->json(["message" => 'Usuario registrado correctamente']);
     }
