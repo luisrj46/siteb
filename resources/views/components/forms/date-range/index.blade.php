@@ -25,7 +25,7 @@
 <script>
     formatter = 'DD/MM/YYYY';
     if (@json($timePicker)) {
-        formatter = 'DD/MM/YYYY HH:mm';
+        formatter = 'DD/MM/YYYY hh:mm A';
     }
 
     {{ $configName }} = {
@@ -71,7 +71,6 @@
     }
     if (@json($timePicker)) {
         {{ $configName }}.timePicker = true;
-        {{ $configName }}.timePicker24Hour = true;
     }
 
     if ("{{ $startDateValue }}") {
@@ -102,8 +101,8 @@
 
         $('#{{ $id }}').on('apply.daterangepicker', function(ev, picker) {
             if (@json($timePicker)) {
-                setDateValues(picker.startDate.format('YYYY-MM-DD hh:mm:00'), picker.endDate.format(
-                    'YYYY-MM-DD hh:mm:00'))
+                setDateValues(picker.startDate.format('YYYY-MM-DD HH:mm:00'), picker.endDate.format(
+                    'YYYY-MM-DD HH:mm:00'))
             } else {
                 setDateValues(picker.startDate.format('YYYY-MM-DD'), picker.endDate.format(
                     'YYYY-MM-DD'))

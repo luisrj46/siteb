@@ -136,12 +136,15 @@ class Maintenance extends Model
         if(is_null($this->maintenanceExecution)) $fieldUpdate['user_id'] = Auth::id();
 
         if ($request->execution_start_date) {
-            $this->maintenanceExecution()->updateOrCreate(
+            $maintenanceExecution = $this->maintenanceExecution()->updateOrCreate(
                 [
                     'id' => $request->execution_id,
                 ],
                 $fieldUpdate
             );
+
+            $maintenanceExecution->syncDetailExecution($request->items ?? []);
+
         }
     }
 }

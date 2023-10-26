@@ -8,17 +8,19 @@
             <div class="card-title">
                 <h3>{{ $title }}</h3>
             </div>
+            @can('store', $model)
+                <div class="card-toolbar">
+                    <div class="d-flex justify-content-end" data-kt-Maintenance-table-toolbar="base">
+                        <button data-action="create" onclick="Maintenance.openForm(this)"
+                            data-route="{{ route('maintenances.create') }}" type="button"
+                            class="btn btn-primary data-modal-app" id="btn-form-Maintenance">
+                            {!! getIcon('plus', 'fs-2', '', 'i') !!}
+                            Registrar
+                        </button>
 
-            <div class="card-toolbar">
-                <div class="d-flex justify-content-end" data-kt-Maintenance-table-toolbar="base">
-                    <button data-action="create" onclick="Maintenance.openForm(this)" data-route="{{ route('maintenances.create') }}"
-                        type="button" class="btn btn-primary data-modal-app" id="btn-form-Maintenance">
-                        {!! getIcon('plus', 'fs-2', '', 'i') !!}
-                        Registrar
-                    </button>
-
+                    </div>
                 </div>
-            </div>
+            @endcan
         </div>
 
         <div class="card-body py-4">

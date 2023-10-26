@@ -2,11 +2,13 @@
 
 namespace App\Models\Maintenance;
 
+use App\Models\BiomedicalEquipment\MaintenanceItem;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 
 class MaintenanceExecution extends Model
@@ -27,5 +29,23 @@ class MaintenanceExecution extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function detailExecutions(): HasMany
+    {
+        return $this->hasMany(DetailExecution::class);
+    }
+
+    function syncDetailExecution(?array $items = []): void
+    {
+        if (count($items)) {
+            $this->detailExecutions()->delete();
+            foreach ($items as $key => $value) {
+                $this->detailExecutions()->create([
+                    'maintenance_item_id' => $key,
+                    'yes_or_not_id' => $value,
+                ]);
+            }
+        }
     }
 }

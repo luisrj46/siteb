@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Maintenance;
 
+use App\Models\Maintenance\MaintenanceType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateMaintenanceRequest extends FormRequest
@@ -38,6 +39,11 @@ class UpdateMaintenanceRequest extends FormRequest
             $rules['execution_observation'] = 'required';
             $rules['execution_boss_signature'] = $maintenance?->maintenanceExecution?->boss_signature ? 'nullable|image' : 'required|image';
             $rules['execution_user_id'] = 'prohibited';
+
+            if($this->maintenance?->maintenanceType?->slug == MaintenanceType::PREVENTIVE) {
+                $rules['items'] = 'required|array';
+                $rules['items.*'] = 'required|integer';
+            }
         }
 
         return $rules;
@@ -57,6 +63,7 @@ class UpdateMaintenanceRequest extends FormRequest
             'execution_observation' => 'observaciones',
             'execution_boss_signature' => 'firma jefe',
             'execution_user_id' => 'Ejecutado por',
+            'items.*' => 'items'
         ];
     }
 }

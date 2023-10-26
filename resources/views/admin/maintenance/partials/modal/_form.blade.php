@@ -3,6 +3,7 @@
     $disabled_execution = $request->action == 'view' ? '1' : '';
     $execution = $record->maintenanceExecution;
     $action = $request->action == 'edit' ? 'update' : 'execution';
+    $optionsItem = $record->biomedicalEquipment?->getOptionsItem();
 @endphp
 
 <form id="kt_modal_user_form" method="POST" class="form"
@@ -48,6 +49,28 @@
             <x-forms.input-group.index required="1" label="Fecha fin" variant="date-range" single="1"
                 startDateValue="{{ $execution?->end_date }}" name="execution_end_date" :disabled="$disabled_execution"
                 :timePicker="true" />
+
+            @if (
+                $record->biomedicalEquipment->maintenanceItems->count() > 0 &&
+                    $record->maintenanceType->slug == $record->maintenanceType::PREVENTIVE)
+                <h4 class="mb-2">Items de mantenimientos preventivo</h4>
+
+                @foreach ($record->maintenanceExecution->detailExecutions ?? $record->biomedicalEquipment->maintenanceItems as $key => $item)
+                    <div class="mb-4">
+                        <x-forms.label.index :required="true" :label="$key + 1 . '. ' . ($item?->maintenanceItem?->description ?? $item->description)" />
+                        @php
+                            $idd = $item->maintenance_item_id ?? $item->id;
+                            $name = "items[$idd]";
+                        @endphp
+                        @foreach ($optionsItem as $option)
+                            <x-forms.radio.index :checked="$item?->yes_or_not_id == $option->id" class="mb-2" :name="$name" :value="$option->id"
+                                keyName="items" :label="$option->name" />
+                        @endforeach
+                        <span id="error_{{ $name }}" class="text-danger d-none"></span>
+
+                    </div>
+                @endforeach
+            @endif
 
             <x-forms.input-group.index required="1" variant="textarea" label="Materiales"
                 value="{{ $execution?->materials }}" name="execution_materials" :disabled="$disabled_execution" />

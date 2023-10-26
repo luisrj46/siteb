@@ -120,6 +120,10 @@ class BiomedicalEquipment extends Model
     }
 
     // form 
+    function getOptionsItem() : object {
+        return YesOrNot::all();
+    }
+
     public static function form($record, $request)
     {
         if ($request->action === 'delete') return view('admin.biomedical_equipment.partials.modal.sub._delete', ['record' => $record])->render();
