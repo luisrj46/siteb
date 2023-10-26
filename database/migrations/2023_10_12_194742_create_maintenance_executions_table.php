@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->string('boss_signature');
+            $table->string('boss_signature')->nullable();
             $table->text('materials')->nullable();
             $table->text('observation')->nullable();
             $table->timestamps();

@@ -33,6 +33,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::controller(MaintenanceController::class)->group(function(){
             Route::resource('maintenances', MaintenanceController::class)->except('update');
             Route::post('maintenances/{maintenance}/update', [MaintenanceController::class, 'update'])->name('maintenances.update');
+            Route::get('maintenances/{maintenance}/form/execution', [MaintenanceController::class, 'execution'])->name('maintenances.execution.form');
+            Route::post('maintenances/{maintenance}/save/execution', [MaintenanceController::class, 'executionSave'])->name('maintenances.execution');
         });
         
         Route::get('profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
@@ -41,10 +43,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::prefix('get')->name('get.')->group(function () {
-
-        Route::get('type/user', [GetUserController::class, 'typeUser'])->name('typeUser');
-        Route::get('type/document', [GetUserController::class, 'typeDocument'])->name('typeDocument');
-        Route::get('type/phone', [GetUserController::class, 'typePhone'])->name('typePhone');
 
         Route::get('form/acquisition', [GetBiomedicalEquipmentController::class, 'formAcquisition'])->name('form.acquisition');
         Route::get('property', [GetBiomedicalEquipmentController::class, 'property'])->name('property');

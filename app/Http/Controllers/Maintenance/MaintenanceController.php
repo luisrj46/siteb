@@ -73,6 +73,19 @@ class MaintenanceController extends Controller
         return response()->json(["message" => 'Mantenimiento actualizado correctamente']);
     }
 
+    public function executionSave(UpdateMaintenanceRequest $request, Maintenance $maintenance)
+    {
+        $this->authorize('execution', $maintenance);
+        $this->maintenanceService->update($request, $maintenance);
+        return response()->json(["message" => 'Mantenimiento ejecutado correctamente']);
+    }
+
+    public function execution(Request $request, Maintenance $maintenance)
+    {
+        $this->authorize('execution', $maintenance);
+        return $this->maintenanceService->form($request, $maintenance);
+    }
+
 
     /**
      * Remove the specified resource from storage.

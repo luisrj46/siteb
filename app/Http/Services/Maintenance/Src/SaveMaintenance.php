@@ -25,8 +25,7 @@ class SaveMaintenance
             $model->fill($newRequest);
 
             $model->save();
-            // $model->syncItems($request->items);
-            // $model->syncComponents($request->components);
+            $model->syncExecution($newRequest);
 
             DB::commit();
         } catch (Exception $exc) {

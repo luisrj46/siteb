@@ -61,9 +61,9 @@ class MaintenancePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function disable(User $user, Maintenance $maintenance): Response
+    public function execution(User $user, Maintenance $maintenance): Response
     {
-        if ($user->can('maintenance.disable')) return Response::allow();
+        if ($user->can('maintenance.execution') && $maintenance->user_id == $user->id) return Response::allow();
 
         return Response::deny();
     }

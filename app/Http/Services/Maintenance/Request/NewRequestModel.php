@@ -14,10 +14,14 @@ class NewRequestModel
 
     public function newRequest(Request $request, bool $isNew): array
     {
-
+        $signature = $this->uploadOneFile($request->execution_boss_signature, 'axecution/signature_boss');
+        
         $newRequest = $request->all();
 
+        Arr::forget($newRequest, ['execution_boss_signature']);
+
         if (!$isNew) Arr::set($newRequest, 'created_by', Auth::id());
+        if ($signature) Arr::set($newRequest, 'execution_boss_signature', $signature);
 
         return $newRequest;
     }
