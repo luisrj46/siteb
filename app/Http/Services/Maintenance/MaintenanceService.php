@@ -2,6 +2,7 @@
 
 namespace App\Http\Services\Maintenance;
 
+use App\Http\Resources\Maintenance\EventsResource;
 use App\Http\Services\Maintenance\Src\SaveMaintenance;
 use App\Http\Services\Contracts\ServiceInterface;
 use App\Models\Maintenance\Maintenance;
@@ -55,6 +56,12 @@ class MaintenanceService implements ServiceInterface
     public function update(Request $request, Model $maintenance): void
     {
         $this->saveMaintenance->save($request, $maintenance);
+    }
+
+    public function getEvents()
+    {
+        $maintenances = Maintenance::doesntHave('maintenanceExecution')->whereDate('scheduled_date','>=', request()->start)->whereDate('scheduled_date','<', request()->end)->get();
+        return new EventsResource($maintenances);
     }
 
     public function destroy(Model $maintenance): void

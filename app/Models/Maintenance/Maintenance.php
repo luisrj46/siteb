@@ -63,9 +63,10 @@ class Maintenance extends Model
 
     protected function type(): Attribute
     {
-        $class = $this->maintenanceType->slug == MaintenanceType::CORRECTIVE ? 'danger' : 'warning';
+        $class = $this->maintenanceType->slug == MaintenanceType::CORRECTIVE ? 'danger' : 'primary';
+        $icon = $this->maintenanceExecution?->id ? '<i title="Ejecutado" class="bi cursor-pointer bi-check-square-fill text-success"></i>' : '<i title="Pendiente" class="bi cursor-pointer bi-clock text-primary"></i>';
         return Attribute::make(
-            get: fn () => '<span class="ms-2 badge badge-light-' . $class . ' fw-bold">' . $this->maintenanceType->name . '</span>'
+            get: fn () => '<span class="ms-2 mx-2 badge badge-light-' . $class . ' fw-bold">' . $this->maintenanceType->name . '</span>' . $icon
         );
     }
 
@@ -124,18 +125,18 @@ class Maintenance extends Model
     function syncExecution(array $request): void
     {
         $request = (object) $request;
-        $fieldUpdate = [
-            'maintenance_id' => $this->id,
-            'start_date' => $request->execution_start_date,
-            'end_date' => $request->execution_end_date,
-            'materials' => $request->execution_materials,
-            'observation' => $request->execution_observation,
-        ];
+        if (isset($request->execution_start_date)) {
+            $fieldUpdate = [
+                'maintenance_id' => $this->id,
+                'start_date' => $request->execution_start_date,
+                'end_date' => $request->execution_end_date,
+                'materials' => $request->execution_materials,
+                'observation' => $request->execution_observation,
+            ];
 
-        if(isset($request->execution_boss_signature)) $fieldUpdate['boss_signature'] = $request->execution_boss_signature;
-        if(is_null($this->maintenanceExecution)) $fieldUpdate['user_id'] = Auth::id();
+            if (isset($request->execution_boss_signature)) $fieldUpdate['boss_signature'] = $request->execution_boss_signature;
+            if (is_null($this->maintenanceExecution)) $fieldUpdate['user_id'] = Auth::id();
 
-        if ($request->execution_start_date) {
             $maintenanceExecution = $this->maintenanceExecution()->updateOrCreate(
                 [
                     'id' => $request->execution_id,
@@ -144,7 +145,6 @@ class Maintenance extends Model
             );
 
             $maintenanceExecution->syncDetailExecution($request->items ?? []);
-
         }
     }
 }

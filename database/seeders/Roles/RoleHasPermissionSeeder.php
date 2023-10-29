@@ -70,7 +70,10 @@ class RoleHasPermissionSeeder extends Seeder
         $supportRole->permissions()->sync($supportPermission);
 
 
-
+        foreach (User::all() ?? [] as $user) {
+            $user->roles()->sync([Role::where('name', '!=', RolesSeeder::ROOT)->get()->random()->id]);
+        }
+        
         $rootRole = Role::whereName(RolesSeeder::ROOT)->first();
         $UserRoot = User::first();
         $UserRoot->roles()->sync([$rootRole->id]);

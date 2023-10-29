@@ -31,9 +31,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
 
         Route::controller(MaintenanceController::class)->group(function(){
+            Route::get('maintenances/calendar', [MaintenanceController::class, 'calendar'])->name('maintenances.calendar');
+            Route::get('maintenances/get/events', [MaintenanceController::class, 'getEvents'])->name('maintenances.events');
             Route::resource('maintenances', MaintenanceController::class)->except('update');
             Route::post('maintenances/{maintenance}/update', [MaintenanceController::class, 'update'])->name('maintenances.update');
-            Route::get('maintenances/{maintenance}/form/execution', [MaintenanceController::class, 'execution'])->name('maintenances.execution.form');
+            Route::get('maintenances/{maintenance?}/form/execution', [MaintenanceController::class, 'execution'])->name('maintenances.execution.form');
             Route::post('maintenances/{maintenance}/save/execution', [MaintenanceController::class, 'executionSave'])->name('maintenances.execution');
         });
         

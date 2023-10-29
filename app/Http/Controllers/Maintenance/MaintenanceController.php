@@ -87,6 +87,14 @@ class MaintenanceController extends Controller
         return response()->json(["message" => 'Mantenimiento ejecutado correctamente']);
     }
 
+    public function calendar(){
+        return view('admin.maintenance.calendar');
+    }
+
+    public function getEvents(){
+        return $this->maintenanceService->getEvents();
+    }
+
     /**
      * Remove the specified resource from storage.
      */

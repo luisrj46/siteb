@@ -53,7 +53,7 @@
             @if (
                 $record->biomedicalEquipment->maintenanceItems->count() > 0 &&
                     $record->maintenanceType->slug == $record->maintenanceType::PREVENTIVE)
-                <h4 class="mb-2">Items de mantenimientos preventivo</h4>
+                <h4 class="mb-2">Items de mantenimiento preventivo</h4>
 
                 @foreach ($record->maintenanceExecution->detailExecutions ?? $record->biomedicalEquipment->maintenanceItems as $key => $item)
                     <div class="mb-4">

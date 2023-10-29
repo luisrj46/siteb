@@ -21,11 +21,12 @@
     {!! includeFonts() !!}
     <!--end::Fonts-->
 
-    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link href="{{ asset('fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('fullcalendar/fullcalendar.bundle.js')}}"></script><!--begin::Global Stylesheets Bundle(used by all pages)-->
     @foreach (getGlobalAssets('css') as $path)
         {!! sprintf(
             '
-                                            <link rel="stylesheet" href="%s">',
+                                                    <link rel="stylesheet" href="%s">',
             asset($path),
         ) !!}
     @endforeach
@@ -35,7 +36,7 @@
     @foreach (getVendors('css') as $path)
         {!! sprintf(
             '
-                                            <link rel="stylesheet" href="%s">',
+                                                    <link rel="stylesheet" href="%s">',
             asset($path),
         ) !!}
     @endforeach
@@ -45,7 +46,7 @@
     @foreach (getCustomCss() as $path)
         {!! sprintf(
             '
-                                            <link rel="stylesheet" href="%s">',
+                                                    <link rel="stylesheet" href="%s">',
             asset($path),
         ) !!}
     @endforeach
@@ -62,7 +63,6 @@
         <span class="spinner-border text-primary" role="status"></span>
         <span class="text-gray-800 fs-6 fw-semibold mt-5">Loading...</span>
     `;
-
     </script>
     @stack('styles')
 </head>

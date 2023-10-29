@@ -31,8 +31,7 @@ class UpdateMaintenanceRequest extends FormRequest
             'scheduled_date' => 'filled|date|date_format:Y-m-d H:i:s',
             'created_by' => 'prohibited'
         ];
-        
-        if($maintenance->has('maintenanceExecution') || $this->action == 'execution'){
+        if(boolval($maintenance->maintenanceExecution?->id) || $this->action == 'execution'){
             $rules['execution_start_date'] = 'required|date|date_format:Y-m-d H:i:s';
             $rules['execution_end_date'] = 'required|date|after:execution_start_date|date_format:Y-m-d H:i:s';
             $rules['execution_materials'] = 'required';

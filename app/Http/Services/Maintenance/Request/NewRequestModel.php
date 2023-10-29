@@ -12,7 +12,7 @@ class NewRequestModel
 
     use UploadFile;
 
-    public function newRequest(Request $request, bool $isNew): array
+    public function newRequest(Request $request, bool $isEdit): array
     {
         $signature = $this->uploadOneFile($request->execution_boss_signature, 'axecution/signature_boss');
         
@@ -20,7 +20,7 @@ class NewRequestModel
 
         Arr::forget($newRequest, ['execution_boss_signature']);
 
-        if (!$isNew) Arr::set($newRequest, 'created_by', Auth::id());
+        if (!$isEdit) Arr::set($newRequest, 'created_by', Auth::id());
         if ($signature) Arr::set($newRequest, 'execution_boss_signature', $signature);
 
         return $newRequest;

@@ -20,7 +20,7 @@ class SaveMaintenance
         try {
             DB::beginTransaction();
 
-            $newRequest = $newRequestModel->newRequest($request, $model->id);
+            $newRequest = $newRequestModel->newRequest($request, boolval($model->id));
 
             $model->fill($newRequest);
 

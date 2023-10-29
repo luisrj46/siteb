@@ -47,7 +47,7 @@
             {{-- @can('viewAny', \App\Models\User\User::class) --}}
                 <div class="menu-item">
                     <a class="menu-link {{-- {{ request()->routeIs('users.index') ? 'active' : '' }} --}}"
-                        href="{{ route('users.index') }}">
+                        href="{{ route('maintenances.calendar') }}">
                         <span class="menu-icon">{!! getIcon('profile-user', 'fs-1') !!}</span>
                         <span class="menu-title">Agenda</span>
                     </a>

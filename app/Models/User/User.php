@@ -98,7 +98,7 @@ class User extends Authenticatable
 
     public static function getRoles()
     {
-        return \Spatie\Permission\Models\Role::select('id','title as name')->get();
+        return \Spatie\Permission\Models\Role::select('id','title as name')->where('name','!=', RolesSeeder::ROOT)->get();
     }
     //end Accessor
 
