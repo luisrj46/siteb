@@ -3,6 +3,7 @@
 namespace Database\Factories\User;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -28,6 +29,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
+            'photo' => UploadedFile::fake()->image('avatar.png'),
+            'signature' => UploadedFile::fake()->image('signature.png')
         ];
     }
 

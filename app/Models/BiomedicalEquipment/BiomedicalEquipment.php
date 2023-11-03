@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
 class BiomedicalEquipment extends Model
 {
-    use HasFactory, ModelTrait;
+    use HasFactory, ModelTrait, SoftDeletes;
 
     protected $table = 'biomedical_equipments';
 
@@ -137,9 +138,9 @@ class BiomedicalEquipment extends Model
     // end form
 
 
-    public function syncItems(array $items = [])
+    public function syncItems(?array $items)
     {
-        if (count($items) > 0) {
+        if (count($items ?? []) > 0) {
             $old = $this->maintenanceItems->pluck('id')->toArray();
             $new = array_keys($items);
             $forDelete = array_diff($old, $new);
@@ -154,9 +155,9 @@ class BiomedicalEquipment extends Model
         }
     }
 
-    public function syncComponents(Array $components=[])
+    public function syncComponents(?Array $components)
     {
-        if(count($components) > 0){
+        if(count($components ?? []) > 0){
             $old = $this->components->pluck('id')->toArray();
             $new = Arr::pluck($components, 'id');
             $forDelete = array_diff($old,$new);

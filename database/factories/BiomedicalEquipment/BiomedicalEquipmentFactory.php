@@ -13,6 +13,7 @@ use App\Models\BiomedicalEquipment\UseBiomedical;
 use App\Models\BiomedicalEquipment\Voltage;
 use App\Models\BiomedicalEquipment\YesOrNot;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Http\UploadedFile;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BiomedicalEquipment\BiomedicalEquipment>
@@ -61,7 +62,7 @@ class BiomedicalEquipmentFactory extends Factory
             'voltage' => '115',
             'description' => fake()->paragraph(1),
             'damaged' => YesOrNot::get()->random(),
-            'photo' => fake()->imageUrl(null,null,'avatar'),
+            'photo' => UploadedFile::fake()->image('photo1.jpg'),
         ];
     }
 }

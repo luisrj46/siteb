@@ -17,7 +17,8 @@ class MaintenanceItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'description' => fake()->address()
+            'description' => fake()->address(),
+            'id' => null
         ];
     }
 }

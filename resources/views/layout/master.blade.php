@@ -111,7 +111,6 @@
 
         });
     </script>
-    @livewireScripts
 </body>
 <!--end::Body-->
 
