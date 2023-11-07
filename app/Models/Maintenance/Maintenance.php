@@ -26,6 +26,10 @@ class Maintenance extends Model
     const tableFields = ['id', 'type', 'equipment', 'responsible', 'scheduled_date', 'actions_access'];
     const searchable = ['id'];
 
+    protected $casts = [
+        'scheduled_date' => 'datetime:Y-m-d H:i:s',
+    ];
+
     protected static function booted(): void
     {
         static::addGlobalScope('own', function (Builder $builder) {
@@ -73,14 +77,14 @@ class Maintenance extends Model
     protected function equipment(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->biomedicalEquipment->name
+            get: fn () => $this->biomedicalEquipment->name . ' - ' . $this->biomedicalEquipment->id
         );
     }
 
     protected function responsible(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->user->name
+            get: fn () => $this->user->name . ' - ' . $this->user->document
         );
     }
 

@@ -20,7 +20,7 @@
             label="Tipo" :value="$record->maintenanceType" required="1" name="maintenance_type_id" :disabled="$disabled_view" />
 
         <x-forms.input-group.index required="1" url="{{ route('get.biomedical.equipment') }}" label="Equipo biomédico"
-            :value="$record->biomedicalEquipment" name="biomedical_equipment_id" variant="select2" :disabled="$disabled_view" />
+            :value="$record->biomedicalEquipment" name="biomedical_equipment_id" keysValues="name|active_code" variant="select2" :disabled="$disabled_view" />
 
         <x-forms.input-group.index required="1" url="{{ route('get.responsible') }}" label="Responsable"
             keysValues="name|document" :value="$record->user" name="user_id" variant="select2" :disabled="$disabled_view" />

@@ -65,12 +65,22 @@
                 editable: false,
                 dayMaxEvents: true,
                 events: function(info, successCallback, failureCallback) {
-                    axios.get(@json(route('maintenances.events')), { params: { start: info.startStr, end: info.endStr } }).then(function(result) {
-                        successCallback(
+                    KTApp.showPageLoading();
+                    axios.get(@json(route('maintenances.events')), {
+                        params: {
+                            start: info.startStr,
+                            end: info.endStr
+                        }
+                    }).then(function(result) {
+                        let success = successCallback(
                             result?.data?.data?.map(function(eventEl) {
                                 return eventEl
                             })
                         )
+                    }).finally(function() {
+                        setTimeout(() => {
+                            KTApp.hidePageLoading();
+                        }, 1000);
                     });
                 }
 

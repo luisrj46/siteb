@@ -19,9 +19,9 @@ class EventsResource extends ResourceCollection
                 function ($item, $key) {
                     return [
                         'id' => $item->id,
-                        'title' => $item?->biomedicalEquipment?->name.' - '.$item?->biomedicalEquipment?->active_code,
+                        'title' => $item?->biomedicalEquipment?->name.'('.$item?->biomedicalEquipment?->id.')'.' - '.$item->id,
                         'color' => $item?->maintenanceType?->slug == MaintenanceType::PREVENTIVE ? '#3E97FF' : '#f1416c',
-                        'start' => date_create($item->scheduled_date)?->format('c')
+                        'start' => $item->scheduled_date?->format('c')
                     ];
                 }
             )->toArray();

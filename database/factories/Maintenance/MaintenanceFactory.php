@@ -25,8 +25,8 @@ class MaintenanceFactory extends Factory
             'biomedical_equipment_id' => BiomedicalEquipment::get()->random(),
             'user_id' => User::role(RolesSeeder::SUPPORT)->get()->random(),
             'observation' => $this->faker->paragraph,
-            'scheduled_date' => now()->addDays(5)->format('Y-m-d H:i:s'),
-            'created_by' => User::get()->first(),
+            'scheduled_date' => now()->addDays(rand(1, 15))->addHours(rand(0, 20))->format('Y-m-d H:i:s'),
+            'created_by' => User::get()->random(),
         ];
     }
 }

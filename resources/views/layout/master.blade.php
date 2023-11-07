@@ -21,12 +21,12 @@
     {!! includeFonts() !!}
     <!--end::Fonts-->
 
-    <link href="{{ asset('fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('fullcalendar/fullcalendar.bundle.js')}}"></script><!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link href="{{ asset('fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('fullcalendar/fullcalendar.bundle.js') }}"></script><!--begin::Global Stylesheets Bundle(used by all pages)-->
     @foreach (getGlobalAssets('css') as $path)
         {!! sprintf(
             '
-                                                    <link rel="stylesheet" href="%s">',
+                                                                    <link rel="stylesheet" href="%s">',
             asset($path),
         ) !!}
     @endforeach
@@ -36,7 +36,7 @@
     @foreach (getVendors('css') as $path)
         {!! sprintf(
             '
-                                                    <link rel="stylesheet" href="%s">',
+                                                                    <link rel="stylesheet" href="%s">',
             asset($path),
         ) !!}
     @endforeach
@@ -46,7 +46,7 @@
     @foreach (getCustomCss() as $path)
         {!! sprintf(
             '
-                                                    <link rel="stylesheet" href="%s">',
+                                                                    <link rel="stylesheet" href="%s">',
             asset($path),
         ) !!}
     @endforeach
@@ -104,9 +104,21 @@
     <!--end::Javascript-->
 
     <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
         document.addEventListener("DOMContentLoaded", function(event) {
             setTimeout(function() {
                 loadingEl.remove();
+                let idd = getParameterByName('idd');
+                if (idd > 0) {
+                    let search = $(':input[type=search]');
+                    search.val(idd);
+                    search.trigger('keyup');
+                }
             }, 1000);
 
         });

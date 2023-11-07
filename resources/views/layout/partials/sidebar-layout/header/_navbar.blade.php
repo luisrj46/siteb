@@ -44,7 +44,9 @@
         <div class="btn m-2 btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-40px h-40px "
             data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
             data-kt-menu-placement="bottom-end" id="kt_menu_item_wow">{!! getIcon('notification', 'fs-2') !!}
-            <span class="bullet bullet-dot bg-danger h-6px w-6px translate-middle top-0 start-50 animation-blink"></span>
+            @if ($authUser->unreadNotifications->count() > 0)
+                <span class="text-danger bg-white p-1 border translate-middle top-0 start-50 animation-blink">{{ $authUser->unreadNotifications->count() }}</span>
+            @endif
         </div>
         @include('partials.menus._notifications-menu')
         <!--end::Menu wrapper-->

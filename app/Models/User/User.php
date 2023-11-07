@@ -11,10 +11,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -76,6 +74,13 @@ class User extends Authenticatable
     {
         return Attribute::make(
             get: fn () => $this->is_enabled == 1 ? '<span class="ms-2 badge badge-light-success fw-bold">Si</span>' : '<span class="ms-2 badge badge-light-danger fw-bold">No</span>',
+        );
+    }
+
+    protected function phoneSms(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->phone ? "57".$this->phone : null
         );
     }
 

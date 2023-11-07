@@ -4,8 +4,59 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "054530d5f01f6e20f1d95b815a604a99",
+    "content-hash": "5b95a6ca6ac498a8fe18b941f80a9f9d",
     "packages": [
+        {
+            "name": "benmorel/gsm-charset-converter",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BenMorel/GsmCharsetConverter.git",
+                "reference": "c38e7adb96a1048cdb45beabac03b90592c81c01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BenMorel/GsmCharsetConverter/zipball/c38e7adb96a1048cdb45beabac03b90592c81c01",
+                "reference": "c38e7adb96a1048cdb45beabac03b90592c81c01",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpunit/phpunit": "^8.0 || ^9.0",
+                "vimeo/psalm": "4.29.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BenMorel\\GsmCharsetConverter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Converts GSM 03.38 strings to and from UTF-8",
+            "keywords": [
+                "GSM 03.38",
+                "gsm",
+                "sms"
+            ],
+            "support": {
+                "issues": "https://github.com/BenMorel/GsmCharsetConverter/issues",
+                "source": "https://github.com/BenMorel/GsmCharsetConverter/tree/0.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/BenMorel",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-11-01T18:59:03+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.11.0",

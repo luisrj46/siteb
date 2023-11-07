@@ -19,6 +19,10 @@ trait ModelTrait
                 $this->AuxSearch($query, $search);
             }
         }
+        $idd = $request->idd;
+        if($idd > 0 && $search == $idd){
+            $query->where('id', $idd);
+        }
 
         $query;
     }

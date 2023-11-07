@@ -117,6 +117,11 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        'labsmobile' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/labsmobile/labsmobile.log'),
+            'days' => 10,
+        ],
     ],
 
 ];

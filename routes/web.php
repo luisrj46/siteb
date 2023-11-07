@@ -5,7 +5,6 @@ use App\Http\Controllers\BiomedicalEquipment\GetBiomedicalEquipmentController;
 use App\Http\Controllers\Maintenance\GetMaintenanceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Maintenance\MaintenanceController;
-use App\Http\Controllers\User\GetUserController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;

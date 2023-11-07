@@ -3,6 +3,7 @@
 namespace App\Models\BiomedicalEquipment;
 
 use App\Traits\Models\ModelTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -170,5 +171,12 @@ class BiomedicalEquipment extends Model
                 Component::upsert($dataComponents,['id'],['name','brand','model','serie']);
             }
         }
+    }
+
+    public function auxGetSearch(Builder $query, $search = ''): void
+    {
+        $query->where('name', 'like', "%$search%")
+            ->orWhere('id', 'like', "%$search%")
+            ->selectRaw("id, CONCAT(name, ' - ', id) as text");
     }
 }
