@@ -12,7 +12,7 @@ class MaintenanceObserver
      */
     public function created(Maintenance $maintenance): void
     {
-        if($maintenance->maintenanceType->slug == $maintenance->maintenanceType::CORRECTIVE && now()->diffInHours($maintenance->scheduled_date) == 0){
+        if($maintenance->maintenanceType->slug == $maintenance->maintenanceType::CORRECTIVE || $maintenance->scheduled_date->format('Y-m-d') == now()->format('Y-m-d')){
             $maintenance->user?->notify( new MaintenanceNotification($maintenance));
         }
     }

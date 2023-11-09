@@ -24,7 +24,7 @@ class Maintenance extends Model
 
     const tableHeaders = ['#', 'Tipo', 'Equipo', 'Responsable', 'Fecha programada', 'Acciones'];
     const tableFields = ['id', 'type', 'equipment', 'responsible', 'scheduled_date', 'actions_access'];
-    const searchable = ['id'];
+    const searchable = ['id', 'scheduled_date'];
 
     protected $casts = [
         'scheduled_date' => 'datetime:Y-m-d H:i:s',
@@ -33,8 +33,11 @@ class Maintenance extends Model
     protected static function booted(): void
     {
         static::addGlobalScope('own', function (Builder $builder) {
-            if (Auth::user()->hasExactRoles(RolesSeeder::SUPPORT)) {
-                $builder->where('user_id', Auth::id()); //->has('maintenanceExecution');
+            $user = Auth::user();
+            if ($user?->id) {
+                if ($user->hasExactRoles(RolesSeeder::SUPPORT)) {
+                    $builder->where('user_id', Auth::id()); //->has('maintenanceExecution');
+                }
             }
         });
     }

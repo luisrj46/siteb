@@ -51,16 +51,6 @@
             <x-buttons.indicator id="kt_sign_in_submit" label="Iniciar sesión"/>
         </div>
         <!--end::Submit button-->
-
-        <!--begin::Sign up-->
-        <div class="text-gray-500 text-center fw-semibold fs-6">
-            Tu puedes ser crear tu cuenta!
-
-            <a href="{{ route('register') }}" class="link-primary">
-                Registrate
-            </a>
-        </div>
-        <!--end::Sign up-->
     </form>
     <!--end::Form-->
 

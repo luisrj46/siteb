@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class MaintenanceNotification extends Notification
+class MaintenanceNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -38,6 +38,7 @@ class MaintenanceNotification extends Notification
     {
         return (new MailMessage)
             ->subject('Programación de mantenimiento')
+            ->greeting("Hola $notifiable->name")
             ->line(__('Debe ejecutar el mantenimiento :type # :number programado para la fecha :date, para el equipo biomédico :equipment', ['type' => $this->maintenance->maintenanceType->name, 'number' => $this->maintenance->id, 'date' => $this->maintenance->scheduled_date, 'equipment' => $this->maintenance->biomedicalEquipment->name]))
             ->action('Ejecutar mantenimiento', route('maintenances.index',['idd' => $this->maintenance->id]))
             ->line('¡Recuerda gestionar a tiempo el mantenimiento!');
@@ -63,7 +64,7 @@ class MaintenanceNotification extends Notification
     public function toSMS($notifiable) {
         return (new LabsMobileMessage())
             ->to($notifiable->phone_sms)
-            ->body( __('Ejecutar el mantenimiento :type, # :number para la fecha :date', ['number' => $this->maintenance->id, 'date' => $this->maintenance->scheduled_date, 'type' => strtolower($this->maintenance->maintenanceType->name)]));
+            ->body( __('Siteb: Debe ejecutar el mantenimiento :type, # :number para la fecha :date', ['number' => $this->maintenance->id, 'date' => $this->maintenance->scheduled_date, 'type' => strtolower($this->maintenance->maintenanceType->name)]));
     }
     
 }
