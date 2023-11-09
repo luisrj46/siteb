@@ -1,6 +1,6 @@
 <x-default-layout>
     @php
-        $title = 'Listado de equipos biomedicos';
+        $title = 'Listado de equipos biomédicos';
     @endphp
 
     <div class="card">

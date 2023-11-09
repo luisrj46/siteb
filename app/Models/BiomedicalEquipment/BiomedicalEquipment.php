@@ -21,8 +21,8 @@ class BiomedicalEquipment extends Model
 
     protected $guarded = ['id'];
 
-    const tableHeaders = ['#', 'Nombre', 'Marca', 'Modelo', 'Serie', 'Acciones'];
-    const tableFields = ['id', 'name', 'brand', 'model', 'series', 'actions_access'];
+    const tableHeaders = ['#', 'Nombre', 'Marca', 'Modelo', 'Serie','Habilitado', 'Acciones'];
+    const tableFields = ['id', 'name', 'brand', 'model', 'series','is_enable_access', 'actions_access'];
     const searchable = ['id', 'name', 'brand', 'model'];
 
 

@@ -1,23 +1,24 @@
 <x-default-layout>
 
     @section('title')
-        Dashboard
+        Inicio
     @endsection
 
     <!--begin::Row-->
     <div class="row g-xl-10 mb-12 mb-xl-10">
         <!--begin::Col-->
         <div class="col-6">
-            @include('partials/widgets/cards/_widget-20')
-
-            @include('partials/widgets/cards/_widget-7')
+            @include('partials/widgets/cards/_widget-execution')
+           
+            @include('partials/widgets/cards/_widget-maintenances')
+            
         </div>
         <!--end::Col-->
         <!--begin::Col-->
         <div class="col-6">
-            @include('partials/widgets/cards/_widget-17')
-
-            @include('partials/widgets/lists/_widget-26')
+            @include('partials/widgets/cards/_widget-equipments')
+            
+            @include('partials/widgets/cards/_widget-users')
         </div>
         <!--end::Col-->
         <!--begin::Col-->

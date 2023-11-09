@@ -60,6 +60,7 @@ class BiomedicalEquipmentFactory extends Factory
             'temperature' => fake()->numberBetween(10,40). ' °C',
             'power_supply' => 'AC',
             'voltage' => '115',
+            'is_enabled' => 1,
             'description' => fake()->paragraph(1),
             'damaged' => YesOrNot::get()->random(),
             'photo' => UploadedFile::fake()->image('photo1.jpg'),

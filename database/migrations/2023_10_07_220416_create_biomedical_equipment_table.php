@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('model')->nullable();
             $table->string('series')->nullable();
             $table->string('active_code')->nullable();
+            $table->boolean('is_enabled')->default(1);
             $table->foreignIdFor(Service::class)->constrained()->nullable();
             $table->string('ambient')->nullable();
             $table->string('invima_register')->nullable();

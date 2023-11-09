@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "benmorel/apache-log-parser": "^0.2.0",
         "benmorel/gsm-charset-converter": "^0.3.0",
         "diglactic/laravel-breadcrumbs": "^8.1",
         "guzzlehttp/guzzle": "^7.2",

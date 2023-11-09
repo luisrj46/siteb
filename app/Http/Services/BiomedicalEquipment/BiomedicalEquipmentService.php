@@ -26,7 +26,7 @@ class BiomedicalEquipmentService implements ServiceInterface
             ->order($request)
             ->paginate($request->length ?? 10);
 
-        $biomedicalEquipments->append(['actions_access']);
+        $biomedicalEquipments->append(['actions_access','is_enable_access']);
         
         return $biomedicalEquipments;
     }

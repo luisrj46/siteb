@@ -22,7 +22,7 @@
                     <a class="menu-link {{ request()->routeIs('biomedicalEquipments.index') ? 'active' : '' }}" 
                     href="{{ route('biomedicalEquipments.index') }}">
                         <span class="menu-icon">{!! getIcon('bill', 'fs-1') !!}</span>
-                        <span class="menu-title">Equipos biomedicos</span>
+                        <span class="menu-title">Equipos biomédicos</span>
                     </a>
                 </div>
             @endcan
