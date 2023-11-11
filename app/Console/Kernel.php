@@ -20,7 +20,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('app:daily-maintenance')->everyTwoMinutes();
+        $schedule->command('app:daily-maintenance')->dailyAt("07:00");
     }
 
     /**
