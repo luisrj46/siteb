@@ -80,7 +80,7 @@ class User extends Authenticatable
     protected function phoneSms(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->phone ? "573182319501" : null
+            get: fn () => $this->phone ? "57".$this->phone : null
         );
     }
 
