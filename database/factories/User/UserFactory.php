@@ -27,7 +27,7 @@ class UserFactory extends Factory
             'address' => fake()->address(),
             'is_enabled' => 1,
             'email_verified_at' => now(),
-            'password' => Hash::make('password'),
+            'password' => Hash::make('Stage2023+'),
             'remember_token' => Str::random(10),
             'photo' => UploadedFile::fake()->image('avatar.png'),
             'signature' => UploadedFile::fake()->image('signature.png')
