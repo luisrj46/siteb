@@ -35,7 +35,7 @@ class UpdateUserRequest extends FormRequest
             'signature' => 'nullable|mimes:jpg,png',
 
         ];
-        if($this->user->isRoot) $rules['roles'] = 'nullable';
+        if($this->user->isRoot || $this->action == 'profile') $rules['roles'] = 'nullable';
 
         return $rules;
     }

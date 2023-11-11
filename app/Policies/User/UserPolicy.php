@@ -45,7 +45,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): Response
     {
-        if ($user->can('user.update')) return Response::allow();
+        if ($user->can('user.update') || $user->id == $model->id) return Response::allow();
 
         return Response::deny();
     }

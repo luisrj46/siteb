@@ -31,7 +31,7 @@ class SaveUser
 
             $user->save();
 
-            if($user->isRoot && isset($request->roles)) dd(3); $user->roles()->sync([$request->roles]);
+            if(($user->isRoot && isset($request->roles)) || isset($request->roles)) $user->roles()->sync([$request->roles]);
 
             $this->sendEvent($user, $newRequest["password"] ?? '');
 
