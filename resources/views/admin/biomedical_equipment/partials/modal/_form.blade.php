@@ -21,27 +21,27 @@
         
         <x-forms.input-group.index label="Codigo activo" value="{{ $record->active_code }}" required="1" name="active_code" :disabled="$disabled" />
         
-        <x-forms.input-group.index label="Servicio" value="{{ $record->service }}" required="1" name="service" :disabled="$disabled" />
+        <x-forms.input-group.index label="Servicio" required="1" :value="$record->service" url="{{ route('get.services') }}" variant="select2" name="service_id" :disabled="$disabled" />
+        
+        <x-forms.input-group.index label="Ambiente" value="{{ $record->ambient }}" name="ambient" :disabled="$disabled" />
 
-        <x-forms.input-group.index label="Ambiente" value="{{ $record->ambient }}" required="1" name="ambient" :disabled="$disabled" />
+        <x-forms.input-group.index label="Registro invima" value="{{ $record->invima_register }}" name="invima_register" :disabled="$disabled" />
 
-        <x-forms.input-group.index label="Registro invima" value="{{ $record->invima_register }}" required="1" name="invima_register" :disabled="$disabled" />
+        <x-forms.input-group.index label="Costo" type="number" value="{{ $record->cost }}" name="cost" :disabled="$disabled" />
 
-        <x-forms.input-group.index label="Costo" type="number" value="{{ $record->cost }}" required="1" name="cost" :disabled="$disabled" />
+        <x-forms.input-group.index searchable="false" variant="select2" url="{{ route('get.form.acquisition') }}" label="Forma de adquisición" :value="$record->formAcquisition" name="form_acquisition_id" :disabled="$disabled" />
 
-        <x-forms.input-group.index searchable="false" variant="select2" url="{{ route('get.form.acquisition') }}" label="Forma de adquisición" :value="$record->formAcquisition" required="1" name="form_acquisition_id" :disabled="$disabled" />
-
-        <x-forms.input-group.index required="1" url="{{ route('get.property') }}" label="Propiedad" :value="$record->property" name="property_id" searchable="false" variant="select2" :disabled="$disabled" />
+        <x-forms.input-group.index url="{{ route('get.property') }}" label="Propiedad" :value="$record->property" name="property_id" searchable="false" variant="select2" :disabled="$disabled" />
 
         <x-forms.input-group.index label="Fecha de compra" variant="date-range" single="1" startDateValue="{{ $record->date_purchase }}" name="date_purchase" :disabled="$disabled" />
 
-        <x-forms.input-group.index label="Condición de recepción" value="{{ $record->reception_condition }}" required="1" name="reception_condition" :disabled="$disabled" />
+        <x-forms.input-group.index label="Condición de recepción" value="{{ $record->reception_condition }}" name="reception_condition" :disabled="$disabled" />
 
-        <x-forms.input-group.index label="Año de producción" value="{{ $record->year_production }}" required="1" name="year_production" :disabled="$disabled" />
+        <x-forms.input-group.index label="Año de producción" value="{{ $record->year_production }}" name="year_production" :disabled="$disabled" />
 
-        <x-forms.input-group.index label="Fabricante" value="{{ $record->maker }}" required="1" name="maker" :disabled="$disabled" />
+        <x-forms.input-group.index label="Fabricante" value="{{ $record->maker }}"  name="maker" :disabled="$disabled" />
             
-        <x-forms.input-group.index label="Teléfono del fabricante" value="{{ $record->manufacturer_phone }}" required="1" name="manufacturer_phone" :disabled="$disabled" />
+        <x-forms.input-group.index label="Teléfono del fabricante" value="{{ $record->manufacturer_phone }}" name="manufacturer_phone" :disabled="$disabled" />
 
         <x-forms.input-group.index label="Representante" value="{{ $record->representative }}" name="representative" :disabled="$disabled" />
 
@@ -49,15 +49,15 @@
 
         <x-forms.input-group.index label="Periodicidad del mantenimiento preventivo" :value="$record->periodicityPreventive" searchable="false" variant="select2" url="{{ route('get.period') }}"  name="periodicity_preventive" :disabled="$disabled" />
             
-        <x-forms.input-group.index label="Requiere calibración" :value="$record->requiresCalibration" url="{{ route('get.yes.not') }}" searchable="false" variant="select2" name="requires_calibration" :disabled="$disabled" />
+        <x-forms.input-group.index label="Requiere calibración" required="1" :value="$record->requiresCalibration" url="{{ route('get.yes.not') }}" searchable="false" variant="select2" name="requires_calibration" :disabled="$disabled" />
             
         <x-forms.input-group.index label="Periodo de calibración" :value="$record->calibrationPeriodicity" searchable="false" variant="select2" url="{{ route('get.period') }}"  name="calibration_periodicity" :disabled="$disabled" />
 
-        <x-forms.input-group.index label="Manual de operación" :value="$record->operationManual" url="{{ route('get.yes.not') }}" searchable="false" variant="select2" name="operation_manual" :disabled="$disabled" />
+        <x-forms.input-group.index label="Manual de operación" required="1" :value="$record->operationManual" url="{{ route('get.yes.not') }}" searchable="false" variant="select2" name="operation_manual" :disabled="$disabled" />
 
-        <x-forms.input-group.index label="Manual de mantenimiento" :value="$record->maintenanceManual"  url="{{ route('get.yes.not') }}" searchable="false" variant="select2" name="maintenance_manual" :disabled="$disabled" />
+        <x-forms.input-group.index label="Manual de mantenimiento" required="1" :value="$record->maintenanceManual"  url="{{ route('get.yes.not') }}" searchable="false" variant="select2" name="maintenance_manual" :disabled="$disabled" />
 
-        <x-forms.input-group.index label="Planos" :value="$record->plan"  url="{{ route('get.plan') }}" searchable="false" variant="select2" name="plan_id" :disabled="$disabled" />
+        <x-forms.input-group.index label="Planos" required="1" :value="$record->plan"  url="{{ route('get.plan') }}" searchable="false" variant="select2" name="plan_id" :disabled="$disabled" />
 
         <x-forms.input-group.index label="Usos" :value="$record->useBiomedical"  url="{{ route('get.use.biomedical') }}" searchable="false" variant="select2" name="use_biomedical_id" :disabled="$disabled" />
 
@@ -79,9 +79,9 @@
             <x-forms.input-group.index variant="checkbox" label="Habilitado" value="{{ $record->is_enabled }}" checked="{{ $request->action == 'create' ? 1 : 0 }}" name="is_enabled" :disabled="$disabled" />
         @endcan
         
-        <x-forms.input-group.index :value="$record->maintenanceItems" name="items" id="items"  body='admin.biomedical_equipment.partials.modal.sub._items' variant="repeater" label="Items de mantenimiento preventivo" required="1" :disabled="$disabled" />
+        <x-forms.input-group.index :value="$record->maintenanceItems" name="items" id="items"  body='admin.biomedical_equipment.partials.modal.sub._items' variant="repeater" label="Items de mantenimiento preventivo" :disabled="$disabled" />
 
-        <x-forms.input-group.index :value="$record->components" name="components" id="components"  body='admin.biomedical_equipment.partials.modal.sub._components' variant="repeater" label="Componentes" required="1" :disabled="$disabled" />
+        <x-forms.input-group.index :value="$record->components" name="components" id="components"  body='admin.biomedical_equipment.partials.modal.sub._components' variant="repeater" label="Componentes" :disabled="$disabled" />
 
         <x-forms.input-group.index variant="textarea" label="Descripción" value="{{ $record->description }}"
                 name="description" :disabled="$disabled" />

@@ -45,18 +45,6 @@ class RegisteredUserNotification extends Notification implements ShouldQueue
     }
 
     /**
-     * Determine the notification's delivery delay.
-     *
-     * @return array<string, \Illuminate\Support\Carbon>
-     */
-    public function withDelay(object $notifiable): array
-    {
-        return [
-            'mail' => now()->addMinutes(2),
-        ];
-    }
-
-    /**
      * Get the array representation of the notification.
      *
      * @return array<string, mixed>

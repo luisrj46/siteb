@@ -46,6 +46,11 @@ class BiomedicalEquipment extends Model
         return $this->belongsTo(FormAcquisition::class);
     }
 
+    public function service(): BelongsTo
+    {
+        return $this->belongsTo(Service::class);
+    }
+
     public function periodicityPreventive(): BelongsTo
     {
         return $this->belongsTo(Period::class, 'periodicity_preventive');

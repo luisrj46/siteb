@@ -11,7 +11,7 @@
                 <div class="d-flex flex-center flex-column flex-lg-row-fluid">
                     <!--begin::Wrapper-->
                     <!--begin::Logo-->
-                    <div style="background-color: #5e72e4;padding: 15px;margin: 15px;"
+                    <div style="background-color: #3E97FF;padding: 15px;margin: 15px;"
                         class="w-lg-500px text-center">
                         <a href="/" class="mb-2">
                             <x-logos.application-logo  class="h-60px app-sidebar-logo-default"
@@ -31,13 +31,7 @@
                 <!--begin::Footer-->
                 <div class="d-flex flex-center flex-wrap px-5">
                     <!--begin::Links-->
-                    <div class="d-flex fw-semibold text-primary fs-base">
-                        <a href="#" class="px-5">Terminos</a>
-
-                        <a href="#" class="px-5">Planes</a>
-
-                        <a href="#" class="px-5">Contactanos</a>
-                    </div>
+                    
                     <!--end::Links-->
                 </div>
                 <!--end::Footer-->

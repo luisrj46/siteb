@@ -49,6 +49,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('property', [GetBiomedicalEquipmentController::class, 'property'])->name('property');
         Route::get('period', [GetBiomedicalEquipmentController::class, 'period'])->name('period');
         Route::get('yes/not', [GetBiomedicalEquipmentController::class, 'yesNot'])->name('yes.not');
+        Route::get('services', [GetBiomedicalEquipmentController::class, 'services'])->name('services');
         Route::get('plan', [GetBiomedicalEquipmentController::class, 'plan'])->name('plan');
         Route::get('use/biomedical', [GetBiomedicalEquipmentController::class, 'useBiomedical'])->name('use.biomedical');
         Route::get('biomedical/classification', [GetBiomedicalEquipmentController::class, 'biomedicalClassification'])->name('biomedical.classification');

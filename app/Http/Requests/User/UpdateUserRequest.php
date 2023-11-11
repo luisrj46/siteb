@@ -22,7 +22,7 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
 
-        return [
+        $rules = [
             'name' => 'required',
             'document' => 'required',
             'email' => 'required|email|unique:users,email,'.$this->user->id,
@@ -35,6 +35,9 @@ class UpdateUserRequest extends FormRequest
             'signature' => 'nullable|mimes:jpg,png',
 
         ];
+        if($this->user->isRoot) $rules['roles'] = 'nullable';
+
+        return $rules;
     }
 
     public function attributes(): array

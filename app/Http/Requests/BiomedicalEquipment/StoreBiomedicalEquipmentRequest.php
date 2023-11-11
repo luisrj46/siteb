@@ -27,8 +27,9 @@ class StoreBiomedicalEquipmentRequest extends FormRequest
             'model' => 'required',
             'series' => 'required',
             'requires_calibration' => 'required',
+            'active_code' => 'required',
+            'service_id' => 'required',
             'plan_id' => 'required',
-            'use_biomedical_id' => 'required',
             'operation_manual' => 'required',
             'maintenance_manual' => 'required',
             'items' => 'nullable|array',
@@ -54,6 +55,7 @@ class StoreBiomedicalEquipmentRequest extends FormRequest
             'maintenance_manual' => 'manual de mantenimiento',
             'use_biomedical_id' => 'usos',
             'photo' => 'foto',
+            'service_id' => 'servicio'
         ];
     }
 }

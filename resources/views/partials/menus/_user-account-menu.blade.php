@@ -30,7 +30,7 @@
     <!--end::Menu separator-->
     <!--begin::Menu item-->
     <div class="menu-item px-5">
-        <a id="edit_profile" href="javascript:;" onclick="App.modal.openForm(this,'Perfil')" data-action="profile" data-route="{{route('profile.edit')}}" class="menu-link px-5">Mi perfil</a>
+        <a id="edit_profile" href="javascript:;" onclick="App.modal.openForm(this,'Perfil')" data-action="profile" data-route="{{route('users.edit',$authUser)}}" class="menu-link px-5">Mi perfil</a>
     </div>
    
     <div class="menu-item px-5">

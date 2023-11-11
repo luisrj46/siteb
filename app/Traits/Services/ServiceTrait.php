@@ -16,7 +16,7 @@ trait ServiceTrait
 
     public function getTitleModal($request)
     {
-        $actions = ['create' => 'Crear', 'view' => 'Ver', 'edit' => 'Editar', 'delete' => 'Eliminar', 'execution' => 'Ejecutar'];
+        $actions = ['profile' => 'Mi','create' => 'Crear', 'view' => 'Ver', 'edit' => 'Editar', 'delete' => 'Eliminar', 'execution' => 'Ejecutar'];
 
         return $actions[$request->action] . ' ' . $request->modelTitle;
     }

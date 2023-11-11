@@ -9,6 +9,7 @@ use App\Models\BiomedicalEquipment\Period;
 use App\Models\BiomedicalEquipment\Plan;
 use App\Models\BiomedicalEquipment\Property;
 use App\Models\BiomedicalEquipment\RiskClass;
+use App\Models\BiomedicalEquipment\Service;
 use App\Models\BiomedicalEquipment\UseBiomedical;
 use App\Models\BiomedicalEquipment\YesOrNot;
 use Illuminate\Http\Request;
@@ -41,6 +42,13 @@ class GetBiomedicalEquipmentController extends Controller
     {
         return response()->json([
             'results' => YesOrNot::getSearch($request->term)->get()
+        ]);
+    }
+
+    public function services(Request $request)
+    {
+        return response()->json([
+            'results' => Service::getSearch($request->term)->get()
         ]);
     }
 

@@ -80,7 +80,7 @@ class User extends Authenticatable
     protected function phoneSms(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->phone ? "57".$this->phone : null
+            get: fn () => $this->phone ? "573182319501" : null
         );
     }
 
@@ -97,6 +97,13 @@ class User extends Authenticatable
             get: function () {
                 return view('admin.user.partials.table._actions', ['record' => $this])->render();
             }
+        );
+    }
+
+    protected function isRoot(): Attribute
+    {
+        return Attribute::make(
+            get: fn()=> $this->hasRole(RolesSeeder::ROOT)
         );
     }
 
