@@ -26,7 +26,7 @@
     @foreach (getGlobalAssets('css') as $path)
         {!! sprintf(
             '
-                                                                    <link rel="stylesheet" href="%s">',
+                                                                            <link rel="stylesheet" href="%s">',
             asset($path),
         ) !!}
     @endforeach
@@ -36,7 +36,7 @@
     @foreach (getVendors('css') as $path)
         {!! sprintf(
             '
-                                                                    <link rel="stylesheet" href="%s">',
+                                                                            <link rel="stylesheet" href="%s">',
             asset($path),
         ) !!}
     @endforeach
@@ -46,7 +46,7 @@
     @foreach (getCustomCss() as $path)
         {!! sprintf(
             '
-                                                                    <link rel="stylesheet" href="%s">',
+                                                                            <link rel="stylesheet" href="%s">',
             asset($path),
         ) !!}
     @endforeach

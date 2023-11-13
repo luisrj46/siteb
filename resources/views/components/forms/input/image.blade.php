@@ -32,7 +32,7 @@
         <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
 
         <!--begin::Inputs-->
-        <input type="file" data-id="{{ $id }}" name="{{ $name }}" accept="file_extension|.png, .jpg, .jpeg" />
+        <input type="file" data-id="{{ $id }}" name="{{ $name }}" accept="image/*" />
         <input type="hidden" name="{{ $name }}_remove" />
         <!--end::Inputs-->
     </label>

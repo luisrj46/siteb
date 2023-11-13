@@ -9,8 +9,13 @@
                 @php
                     $class = $notification->data['class'] . ' fs-1';
                 @endphp
-                <div data-route="{{$notification->data['class']}}" class="d-flex read-notification cursor-pointer flex-stack py-4">
-                    <a href="{{$notification->data['route']}}" class="text-dark opacity-75">
+                <div 
+                    @if($notification->data['route_name'] ?? false && $notification->data['model_id'] ?? false)
+                        data-route="{{route($notification->data['route_name'], ['idd' => $notification->data['model_id']])}}"
+                    @endif
+                    data-read="{{route('delete.notification',$notification->id)}}"
+                    onclick="App.notification.readNotification(this)" class="d-flex read-notification cursor-pointer flex-stack py-4">
+                    <a class="text-dark opacity-75">
                         <div class="d-flex align-items-center">
                             <div class="symbol symbol-35px me-4">
                                 <span class="symbol-label bg-light-primary">{!! getIcon($notification->data['icon'], $class) !!}</span>

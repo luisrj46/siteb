@@ -62,6 +62,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     });
+    
+    Route::get('/notification/{notification}/read', [DashboardController::class, 'deleteNotification'])->name('delete.notification');
+
 });
 
 Route::get('/error', function () {

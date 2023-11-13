@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Events\RegisteredUserEvent;
 use App\Listeners\RegisteredUserListener;
 use App\Models\Maintenance\Maintenance;
+use App\Models\Maintenance\MaintenanceExecution;
+use App\Observers\Maintenance\ExecutionObserver;
 use App\Observers\Maintenance\MaintenanceObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -29,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
 
     protected $observers = [
         Maintenance::class => [MaintenanceObserver::class],
+        MaintenanceExecution::class => [ExecutionObserver::class],
     ];
 
     /**

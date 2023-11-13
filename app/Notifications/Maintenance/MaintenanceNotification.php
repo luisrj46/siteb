@@ -53,8 +53,8 @@ class MaintenanceNotification extends Notification implements ShouldQueue
     {
         return [
             'message' => __('Debe ejecutar el mantenimiento :type, # :number programado para la fecha :date', ['number' => $this->maintenance->id, 'date' => $this->maintenance->scheduled_date, 'type' => strtolower($this->maintenance->maintenanceType->name)]),
-            'route' => route('maintenances.index',['idd' => $this->maintenance->id]),
-            'maintenanceId' => $this->maintenance->id,
+            'route_name' => 'maintenances.index',
+            'model_id' => $this->maintenance->id,
             'icon' => $this->maintenance->maintenanceType->slug == $this->maintenance->maintenanceType::PREVENTIVE ? 'questionnaire-tablet' : 'wrench',
             'class' => $this->maintenance->maintenanceType->slug == $this->maintenance->maintenanceType::PREVENTIVE ? 'text-warning' : 'text-danger',
 

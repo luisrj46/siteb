@@ -253,4 +253,15 @@ const App = {
             Swal.fire(title, text, "error");
         },
     },
+    notification: {
+        readNotification: function(ele) {
+            let element = $(ele);
+            let url_read = element.data('read');
+            let url_route = element.data('route');
+            $.get(url_read);
+            setTimeout(() => {
+                window.location.href = url_route;
+            }, 300);
+        }
+    }
 };

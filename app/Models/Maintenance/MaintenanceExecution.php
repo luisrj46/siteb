@@ -31,6 +31,11 @@ class MaintenanceExecution extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function maintenance(): BelongsTo
+    {
+        return $this->belongsTo(Maintenance::class);
+    }
+
     public function detailExecutions(): HasMany
     {
         return $this->hasMany(DetailExecution::class);
