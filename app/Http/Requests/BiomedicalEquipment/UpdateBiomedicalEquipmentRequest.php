@@ -33,9 +33,9 @@ class UpdateBiomedicalEquipmentRequest extends FormRequest
             'operation_manual' => 'required',
             'maintenance_manual' => 'required',
             'items' => 'nullable|array',
-            'items.*' => 'required',
+            'items.*.description' => 'required',
             'components' => 'nullable|array',
-            'component.name.*' => 'required',
+            'components.*.name' => 'required',
             'photo' => 'nullable|image',
         ];
     }
@@ -49,8 +49,8 @@ class UpdateBiomedicalEquipmentRequest extends FormRequest
             'series' => 'serie',
             'requires_calibration' => 'requiere calibración',
             'plan_id' => 'planos',
-            'items.*' => 'items',
-            'component.name.*' => 'nombre del componente',
+            'items.*.description' => 'items',
+            'components.*.name' => 'nombre del componente',
             'operation_manual' => 'manual de operación',
             'maintenance_manual' => 'manual de mantenimiento',
             'use_biomedical_id' => 'usos',
