@@ -54,7 +54,7 @@ class ExecutionNotification extends Notification implements ShouldQueue
             'message' => __('Se le informa que el usuario, :user ha ejecutado el mantenimiento # :maintenance', ['user' => $this->execution->user->name, 'maintenance' => $this->execution->maintenance->id]),
             'route_name' => 'maintenances.index',
             'model_id' => $this->execution->maintenance->id,
-            'icon' => 'ki-check',
+            'icon' => 'check',
             'class' => 'text-success',
 
         ];
