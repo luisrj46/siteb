@@ -11,7 +11,9 @@ trait ModelTrait
     public function scopeSearch(Builder $query, Request $request): void
     {
         $search = $request->search['value'] ?? null;
-        if ($search) {
+        $idd = $request->idd;
+        
+        if ($search && $search != $idd) {
             foreach (self::searchable ?? [] as $key => $field) {
                 $key == 0 ? $query->where($field, 'like', "%$search%") : $query->orWhere($field, 'like', "%$search%");
             }
@@ -19,7 +21,6 @@ trait ModelTrait
                 $this->AuxSearch($query, $search);
             }
         }
-        $idd = $request->idd;
         if($idd > 0 && $search == $idd){
             $query->where('id', $idd);
         }
