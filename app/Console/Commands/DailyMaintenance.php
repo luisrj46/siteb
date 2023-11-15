@@ -28,7 +28,7 @@ class DailyMaintenance extends Command
      */
     public function handle()
     {
-        $maintenances = Maintenance::whereRelation('maintenanceType', 'slug', MaintenanceType::PREVENTIVE)->whereDate('scheduled_date', now())->where('created_at', '<', now())->get();
+        $maintenances = Maintenance::whereDate('scheduled_date', now())->whereDate('created_at', '<=', now()->format('Y-m-d 07:00:00'))->get();
         foreach ($maintenances as $maintenance) {
             $maintenance->user?->notify( new MaintenanceNotification($maintenance));
         }
