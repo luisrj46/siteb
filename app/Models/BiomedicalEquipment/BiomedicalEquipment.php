@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
+use function PHPUnit\Framework\isNull;
+
 class BiomedicalEquipment extends Model
 {
     use HasFactory, ModelTrait, SoftDeletes;
@@ -21,8 +23,8 @@ class BiomedicalEquipment extends Model
 
     protected $guarded = ['id'];
 
-    const tableHeaders = ['#', 'Nombre', 'Marca', 'Modelo', 'Serie','Habilitado', 'Acciones'];
-    const tableFields = ['id', 'name', 'brand', 'model', 'series','is_enable_access', 'actions_access'];
+    const tableHeaders = ['#', 'Nombre', 'Marca', 'Modelo', 'Serie', 'Habilitado', 'Acciones'];
+    const tableFields = ['id', 'name', 'brand', 'model', 'series', 'is_enable_access', 'actions_access'];
     const searchable = ['id', 'name', 'brand', 'model'];
 
 
@@ -127,7 +129,8 @@ class BiomedicalEquipment extends Model
     }
 
     // form 
-    function getOptionsItem() : object {
+    function getOptionsItem(): object
+    {
         return YesOrNot::all();
     }
 
@@ -146,14 +149,14 @@ class BiomedicalEquipment extends Model
 
     public function syncItems(?array $items)
     {
+        $old = $this->maintenanceItems->pluck('id')->toArray();
+        $new = is_null($items) ? [] : Arr::pluck($items, 'id');
+        $forDelete = array_diff($old, $new);
+        MaintenanceItem::destroy($forDelete);
         if (count($items ?? []) > 0) {
-            $old = $this->maintenanceItems->pluck('id')->toArray();
-            $new = array_keys($items);
-            $forDelete = array_diff($old, $new);
-            MaintenanceItem::destroy($forDelete);
             foreach ($items as $item) {
-                    $id = $item['id'] > 0 ? $item['id'] : null;
-                    $dataItems[] = ['id' => $id, 'description' => $item['description'], 'biomedical_equipment_id' => $this->id];
+                $id = $item['id'] > 0 ? $item['id'] : null;
+                $dataItems[] = ['id' => $id, 'description' => $item['description'], 'biomedical_equipment_id' => $this->id];
             }
             if (($dataItems ?? false)) {
                 MaintenanceItem::upsert($dataItems, ['id'], ['description']);
@@ -161,19 +164,19 @@ class BiomedicalEquipment extends Model
         }
     }
 
-    public function syncComponents(?Array $components)
+    public function syncComponents(?array $components = [])
     {
-        if(count($components ?? []) > 0){
-            $old = $this->components->pluck('id')->toArray();
-            $new = Arr::pluck($components, 'id');
-            $forDelete = array_diff($old,$new);
-            Component::destroy($forDelete);
+        $old = $this->components->pluck('id')->toArray();
+        $new = is_null($components) ? [] : Arr::pluck($components, 'id');
+        $forDelete = array_diff($old, $new);
+        Component::destroy($forDelete);
+        if (count($components ?? []) > 0) {
 
             foreach ($components as $key => $component) {
-                $dataComponents[] = ['id' => $component['id'], 'name' => $component['name'],'brand' => $component['brand'],'model' => $component['model'],'serie' => $component['serie'],'biomedical_equipment_id' => $this->id];
+                $dataComponents[] = ['id' => $component['id'], 'name' => $component['name'], 'brand' => $component['brand'], 'model' => $component['model'], 'serie' => $component['serie'], 'biomedical_equipment_id' => $this->id];
             }
-            if(($dataComponents ?? false)){
-                Component::upsert($dataComponents,['id'],['name','brand','model','serie']);
+            if (($dataComponents ?? false)) {
+                Component::upsert($dataComponents, ['id'], ['name', 'brand', 'model', 'serie']);
             }
         }
     }
