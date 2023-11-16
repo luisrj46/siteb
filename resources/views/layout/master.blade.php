@@ -113,17 +113,18 @@
         document.addEventListener("DOMContentLoaded", function(event) {
             loadingEl.remove();
             let idd = getParameterByName('idd');
-            if (idd.length > 0) {
-                let search = $(':input[type=search]');
-                search.val(idd);
-                search.trigger('keyup');
-            }
+            
             setTimeout(() => {
+                if (idd.length > 0) {
+                    let search = $(':input[type=search]');
+                    search.val(idd);
+                    search.trigger('keyup');
+                }
                 let url = location.href.split("?");
                 if (url.length > 1) {
                     history.replaceState({}, "", url[0]);
                 }
-            },100);
+            },200);
 
         });
     </script>
