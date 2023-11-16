@@ -215,7 +215,7 @@ const App = {
         },
     },
     dataTable: {
-        init: function (id) {
+        init: function (id,search='') {
             let columns = JSON.parse($("#" + id).attr("columns-table"));
             let columnDefs = JSON.parse($("#" + id).attr("column-defs-table"));
             return $("#" + id).DataTable({
@@ -223,7 +223,10 @@ const App = {
                 responsive: true,
                 serverSide: true,
                 processing: true,
-                searchDelay: 1500,
+                searchDelay: 1000,
+                search: {
+                    "search": search
+                  },
                 ajax: {
                     url: $(this).attr("route"),
                     error: function (xhr, error, code) {

@@ -30,7 +30,7 @@
     @push('scripts')
         <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
         <script>
-            let MaintenanceDataTable = App.dataTable.init('table_maintenances');
+            let MaintenanceDataTable = App.dataTable.init('table_maintenances', idd);
 
             const Maintenance = {
                 titleModel: 'mantenimiento',

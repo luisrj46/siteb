@@ -54,6 +54,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     @livewireStyles
     <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        let idd = getParameterByName('idd');
         const loadingEl = document.createElement("div");
         loadingEl.classList.add("page-loader");
         loadingEl.classList.add("flex-column");
@@ -104,28 +111,12 @@
     <!--end::Javascript-->
 
     <script>
-        function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
         document.addEventListener("DOMContentLoaded", function(event) {
             loadingEl.remove();
-            let idd = getParameterByName('idd');
-            
-            setTimeout(() => {
-                if (idd.length > 0) {
-                    let search = $(':input[type=search]');
-                    search.val(idd);
-                    search.trigger('keyup');
-                }
-                let url = location.href.split("?");
-                if (url.length > 1) {
-                    history.replaceState({}, "", url[0]);
-                }
-            },200);
-
+            let url = location.href.split("?");
+            if (url.length > 1) {
+                history.replaceState({}, "", url[0]);
+            }
         });
     </script>
 </body>
