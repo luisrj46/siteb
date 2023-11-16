@@ -26,7 +26,7 @@
     @foreach (getGlobalAssets('css') as $path)
         {!! sprintf(
             '
-                                                                            <link rel="stylesheet" href="%s">',
+                                                                                            <link rel="stylesheet" href="%s">',
             asset($path),
         ) !!}
     @endforeach
@@ -36,7 +36,7 @@
     @foreach (getVendors('css') as $path)
         {!! sprintf(
             '
-                                                                            <link rel="stylesheet" href="%s">',
+                                                                                            <link rel="stylesheet" href="%s">',
             asset($path),
         ) !!}
     @endforeach
@@ -46,7 +46,7 @@
     @foreach (getCustomCss() as $path)
         {!! sprintf(
             '
-                                                                            <link rel="stylesheet" href="%s">',
+                                                                                            <link rel="stylesheet" href="%s">',
             asset($path),
         ) !!}
     @endforeach
@@ -111,15 +111,19 @@
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
         document.addEventListener("DOMContentLoaded", function(event) {
-            setTimeout(function() {
-                loadingEl.remove();
-                let idd = getParameterByName('idd');
-                if (idd > 0) {
-                    let search = $(':input[type=search]');
-                    search.val(idd);
-                    search.trigger('keyup');
+            loadingEl.remove();
+            let idd = getParameterByName('idd');
+            if (idd.length > 0) {
+                let search = $(':input[type=search]');
+                search.val(idd);
+                search.trigger('keyup');
+            }
+            setTimeout(() => {
+                let url = location.href.split("?");
+                if (url.length > 1) {
+                    history.replaceState({}, "", url[0]);
                 }
-            }, 1000);
+            },100);
 
         });
     </script>

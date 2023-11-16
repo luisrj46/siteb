@@ -228,9 +228,6 @@ const App = {
                     url: $(this).attr("route"),
                     error: function (xhr, error, code) {
                         Swal.fire(code, xhr?.responseJSON?.message, "error");
-                        // setTimeout(() => {
-                        //     location.reload();
-                        // }, 1500);
                     },
                 },
                 columns: columns,

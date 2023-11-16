@@ -88,6 +88,22 @@
 
         <x-forms.input-group.index variant="image" label="Foto" :value="$record->photo_access" name="photo"
                     :disabled="$disabled" />
+        
+        <div class="text-center">
+            <hr>
+            <h3 class="pt-2">Mantenimientos ejecutados</h3>
+        </div>
+        <div class="col-6">
+            <a href="{{$record->correctives->count() > 0 ? route('maintenances.index',['idd' => $record->correctives->pluck('id')->join(',')]) : '#'}}" rel="Ver mantenimientos">
+                <x-forms.label.index label="Correctivos: {{$record->correctives->count()}}" />
+            </a>
+        </div>
+        <div class="col-6">
+            <a href="{{$record->preventives->count() > 0 ? route('maintenances.index',['idd' => $record->preventives->pluck('id')->join(',')]) : '#' }}" rel="Ver mantenimientos">
+                <x-forms.label.index label="Preventivos: {{$record->preventives->count()}}" />
+            </a>
+        </div>
+
     </div>
     <!--end::Scroll-->
 

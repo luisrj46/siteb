@@ -34,9 +34,16 @@ class Maintenance extends Model
     {
         static::addGlobalScope('own', function (Builder $builder) {
             $user = Auth::user();
+            $ids = explode(',',request('idd'));
+            $searchIdd = is_null(request('search')) ? [] : explode(',',request('search')['value']);
             if ($user?->id) {
                 if ($user->hasExactRoles(RolesSeeder::SUPPORT)) {
-                    $builder->where('user_id', Auth::id()); //->has('maintenanceExecution');
+                    if(request('action') != 'view'){
+                        $builder->where('user_id', Auth::id()); //->has('maintenanceExecution');
+                    }
+                    if(!is_null(request('idd')) && $ids == $searchIdd){
+                        $builder->orWhereIn('id', $ids);
+                    }
                 }
             }
         });

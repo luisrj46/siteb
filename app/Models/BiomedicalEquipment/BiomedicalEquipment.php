@@ -2,6 +2,8 @@
 
 namespace App\Models\BiomedicalEquipment;
 
+use App\Models\Maintenance\Maintenance;
+use App\Models\Maintenance\MaintenanceType;
 use App\Traits\Models\ModelTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -36,6 +38,21 @@ class BiomedicalEquipment extends Model
     public function maintenanceItems(): HasMany
     {
         return $this->hasMany(MaintenanceItem::class);
+    }
+
+    public function maintenances(): HasMany
+    {
+        return $this->hasMany(Maintenance::class);
+    }
+
+    public function correctives(): HasMany
+    {
+        return $this->maintenances()->whereRelation('maintenanceType', 'slug', MaintenanceType::CORRECTIVE);
+    }
+
+    public function preventives(): HasMany
+    {
+        return $this->maintenances()->whereRelation('maintenanceType', 'slug', MaintenanceType::PREVENTIVE);;
     }
 
     public function property(): BelongsTo
